@@ -1,4 +1,4 @@
-.PHONY: check test eval skill clean
+.PHONY: check test eval skill hooks clean
 
 SKILL := superagency.skill
 
@@ -17,6 +17,11 @@ eval:
 ## skill — rebuild the archive locally (deterministic; CI owns the committed copy)
 skill: check test
 	./scripts/build.sh
+
+## hooks — install the pre-commit guard against hand-built archives
+hooks:
+	@git config core.hooksPath scripts/hooks
+	@echo "hooks installed (core.hooksPath=scripts/hooks)"
 
 clean:
 	rm -f $(SKILL)
