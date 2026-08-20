@@ -57,15 +57,7 @@ Go to **Settings → Capabilities** and turn on **Code execution and file creati
 
 Download `superagency.skill` from this repo (or from [Releases](../../releases)).
 
-**Option B — have Claude build it**
-
-Download `BUILD.md`, paste it into a Claude conversation, and say:
-
-> Build this skill exactly as specified, then package it as a .skill file.
-
-Claude will create all 25 files and hand you the packaged result. This route is useful if you want to edit the spec first — swap in your own channel norms, drop workflows you don't need, add ones you do.
-
-**Option C — clone and zip it yourself**
+**Option B — clone and zip it yourself**
 
 ```bash
 git clone https://github.com/sayeemabdullah/superagency.git
@@ -124,8 +116,6 @@ superagency/
 Skills load in three stages: the `description` is always in context, the SKILL.md body loads when the skill triggers, and reference files load only when needed. Putting all 24 workflows in one file would mean loading ~35,000 characters of mostly-irrelevant instructions on every request.
 
 So `SKILL.md` is just a routing table. Ask about SEO, it reads `references/seo.md` and nothing else.
-
-`BUILD.md` documents the full architecture and design reasoning if you want to fork or extend it.
 
 ---
 
