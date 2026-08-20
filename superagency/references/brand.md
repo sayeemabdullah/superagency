@@ -34,6 +34,18 @@
 5. If the profile is more than a few months old, ask whether it still holds before enforcing it strictly.
 6. If the profile is still empty, say so and offer to build it from 3-5 examples the user considers on-brand, rather than guessing.
 
+## Tools
+Run a draft through the scorer before the manual read — it matches the banned
+list above mechanically, so the voice check starts from evidence.
+
+```bash
+python3 scripts/readability.py draft.md --brand references/brand.md
+```
+
+It reports any banned word or phrase from this profile that appears in the
+draft. A clean run is not a pass — tone and claims still need the human read
+below.
+
 ## Persisting the profile
 This file resets to a blank template whenever the skill is re-uploaded. After writing a profile or changing one, print the complete file contents and tell the user to paste them into their local `references/brand.md` and repackage. Say this every time you write — it is not obvious, and losing the profile is silent.
 

@@ -23,6 +23,21 @@ Offer > headline/value prop > page structure > form length > CTA copy > design d
 ## Output
 Test plans → inline (hypothesis, variable, metric, duration, stop condition — five lines). A full experiment log or program doc → file.
 
+## Tools
+Never compute significance or sample size by reasoning — run the script.
+
+```bash
+# before launching: how much traffic this test needs
+python3 scripts/ab.py size --baseline 0.032 --mde 0.20 --daily-traffic 900
+
+# reading a result: p-value, confidence interval, and a verdict
+python3 scripts/ab.py result --a 40000 1200 --b 40100 1310
+```
+
+`result` distinguishes *inconclusive (underpowered)* from *inconclusive* — the
+first means the test could never have detected the effect and must not be
+reported as a loss. Quote the confidence interval, not just the p-value.
+
 ## Rules
 - Don't declare a winner on underpowered data. Say the test is inconclusive.
 - Never run overlapping tests on the same funnel without accounting for interaction.

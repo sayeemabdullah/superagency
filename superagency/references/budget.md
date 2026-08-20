@@ -27,6 +27,22 @@ Total budget, time horizon, and what current channels actually cost and return. 
 ## Output
 Allocation plans and business cases → file, with an explicit assumptions table at the top. Quick gut-checks → inline.
 
+## Tools
+Work backwards with the script rather than in prose — it's a four-step chain and
+a slipped decimal is invisible.
+
+```bash
+# does the budget on hand actually reach the goal?
+python3 scripts/budget.py backsolve --target 3000 --conv-rate 0.02 --cpc 2.40 --budget 100000
+
+python3 scripts/budget.py split --total 40000
+python3 scripts/budget.py payback --cac 300 --arpu 50 --margin 0.8
+```
+
+When the budget falls short, `backsolve` reports the shortfall and what the
+budget actually buys. Report that plainly — do not spread the gap across
+channels to make the plan look fundable.
+
 ## Rules
 - Never present a forecast as a commitment. Label assumptions.
 - Account for lag — SEO and content pay back over months; paid pays back immediately. A blended average hides this.

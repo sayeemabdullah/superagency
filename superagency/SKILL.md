@@ -53,6 +53,22 @@ Mappings that aren't one-to-one:
 
 If a keyword is given, skip the routing table and go straight to its file. If none is given, route from the request itself.
 
+## Tools
+
+The skill ships executable scripts in `scripts/`. Run them with `python3 scripts/<name>.py`.
+
+| Script | Use it for | Referenced by |
+|---|---|---|
+| `ab.py` | Sample size, significance, confidence intervals | `testing.md` |
+| `adlint.py` | Ad copy against platform character limits | `paid.md` |
+| `utm.py` | Building and auditing tagged URLs | `analytics.md` |
+| `budget.py` | Back-solving a goal, splits, payback | `budget.md` |
+| `readability.py` | Readability, filler words, banned-word checks | `content.md`, `brand.md` |
+| `pulse.py` | Writing and trending pulse-log entries | `reporting.md` |
+
+Every script takes `--help` and most take `--json`. The relevant reference file
+carries the exact invocation for its workflow.
+
 ## Always do this first
 
 1. **Check `references/brand.md`.** If the profile is empty and the request is customer-facing, ask 2-3 quick questions (audience, tone adjectives, things to avoid) and save the answers there. Skip for internal or quick asks.
@@ -66,6 +82,7 @@ If a keyword is given, skip the routing table and go straight to its file. If no
 - **Flag claims needing substantiation** — superlatives, comparative claims, health/financial/safety results — and say when something needs legal sign-off rather than drafting around it.
 - **Distinguish evidence from hypothesis.** Label anything built without data as something to validate.
 - **Offer 2-3 variants** for headlines, subject lines, and taglines. These get chosen, not accepted.
+- **Never estimate what a bundled tool computes.** Character counts, statistical significance, sample size, budget arithmetic, and UTM consistency go through `scripts/` — not through reasoning. Show the command you ran.
 - **Prioritize by impact ÷ effort.** Don't hand over an unranked list of forty items.
 
 ## Output conventions

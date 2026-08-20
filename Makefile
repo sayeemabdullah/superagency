@@ -1,4 +1,4 @@
-.PHONY: check skill hooks clean
+.PHONY: check test eval skill hooks clean
 
 SKILL := superagency.skill
 
@@ -6,8 +6,16 @@ SKILL := superagency.skill
 check:
 	python3 scripts/validate.py
 
+## test — unit tests for the bundled tools
+test:
+	python3 -m unittest discover -s tests -q
+
+## eval — routing accuracy; needs ANTHROPIC_API_KEY, costs money, not in CI
+eval:
+	python3 scripts/eval_routing.py
+
 ## skill — rebuild the archive locally (deterministic; CI owns the committed copy)
-skill: check
+skill: check test
 	./scripts/build.sh
 
 ## hooks — install the pre-commit guard against hand-built archives
@@ -17,3 +25,4 @@ hooks:
 
 clean:
 	rm -f $(SKILL)
+	rm -rf superagency/scripts/__pycache__ tests/__pycache__

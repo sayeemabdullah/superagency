@@ -7,8 +7,10 @@ guardrail sections, and keyword drift between SKILL.md and the README.
 
 Exit 0 = valid, 1 = one or more failures (each printed).
 """
+import json
 import os
 import re
+import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,6 +21,14 @@ README = os.path.join(ROOT, "README.md")
 
 # Written to at runtime; they ship as empty templates and have no Rules/Output.
 STATEFUL = {"brand.md", "pulse-log.md"}
+
+SCRIPT_DIR = os.path.join(SKILL_DIR, "scripts")
+EXAMPLE_DIR = os.path.join(REF_DIR, "examples")
+EVAL_CASES = os.path.join(ROOT, "evals", "routing.jsonl")
+SKILL_MD_MAX_LINES = 500
+# Examples exist to show shape. Realistic-looking numbers in them are exactly
+# what the skill forbids reusing, so each must carry the warning.
+EXAMPLE_BANNER = "**Illustrative only.**"
 
 failures = []
 
@@ -63,7 +73,8 @@ def main():
 
     skill = open(SKILL_MD).read()
     readme = open(README).read()
-    refs = sorted(f for f in os.listdir(REF_DIR) if f.endswith(".md"))
+    refs = sorted(f for f in os.listdir(REF_DIR)
+                  if f.endswith(".md") and os.path.isfile(os.path.join(REF_DIR, f)))
 
     desc = check_frontmatter(skill)
 
@@ -91,11 +102,72 @@ def main():
             fail(f"{r}: missing '## Output' section")
 
     # Cross-references between reference files must resolve.
+    examples = sorted(os.listdir(EXAMPLE_DIR)) if os.path.isdir(EXAMPLE_DIR) else []
     for r in refs:
         text = open(os.path.join(REF_DIR, r)).read()
         for target in set(re.findall(r"`([a-z\-]+\.md)`", text)):
-            if target not in refs:
+            if target not in refs and target not in examples:
                 fail(f"{r}: cross-reference to `{target}`, which does not exist")
+        for target in set(re.findall(r"`references/examples/([a-z\-]+\.md)`", text)):
+            if target not in examples:
+                fail(f"{r}: points at missing example references/examples/{target}")
+
+    # Bundled tools must exist and actually start. A literal % in an argparse
+    # help string is enough to break --help, and once did.
+    if not os.path.isdir(SCRIPT_DIR):
+        fail("superagency/scripts/ is missing — the bundled tools do not ship")
+    else:
+        scripts = sorted(f for f in os.listdir(SCRIPT_DIR) if f.endswith(".py"))
+        referenced = set()
+        for r in refs:
+            text = open(os.path.join(REF_DIR, r)).read()
+            referenced |= set(re.findall(r"scripts/([a-z_]+\.py)", text))
+        referenced |= set(re.findall(r"`([a-z_]+\.py)`", open(SKILL_MD).read()))
+
+        for name in sorted(referenced):
+            if name not in scripts:
+                fail(f"a reference file invokes scripts/{name}, which does not exist")
+        for name in scripts:
+            if name not in referenced:
+                fail(f"{name} ships but no reference file or SKILL.md mentions it, "
+                     "so nothing will ever run it")
+            proc = subprocess.run([sys.executable, os.path.join(SCRIPT_DIR, name), "--help"],
+                                  capture_output=True, text=True)
+            if proc.returncode != 0:
+                fail(f"scripts/{name} --help exits {proc.returncode}: "
+                     f"{proc.stderr.strip().splitlines()[-1] if proc.stderr.strip() else 'no output'}")
+
+    # Examples must be labelled so their invented numbers are never reused.
+    for name in examples:
+        text = open(os.path.join(EXAMPLE_DIR, name)).read()
+        if EXAMPLE_BANNER not in text:
+            fail(f"examples/{name}: missing the '{EXAMPLE_BANNER}' banner — "
+                 "unlabelled sample numbers invite exactly the fabrication the skill forbids")
+        if not text.lstrip().startswith("# "):
+            fail(f"examples/{name}: no H1 heading")
+
+    # Eval coverage: every routed workflow needs at least one case.
+    if os.path.exists(EVAL_CASES):
+        expected = set()
+        for i, line in enumerate(open(EVAL_CASES), 1):
+            if not line.strip():
+                continue
+            try:
+                case = json.loads(line)
+            except json.JSONDecodeError:
+                fail(f"evals/routing.jsonl line {i}: not valid JSON")
+                continue
+            if case.get("expect") not in refs:
+                fail(f"evals/routing.jsonl line {i}: expects {case.get('expect')!r}, "
+                     "which is not a reference file")
+            expected.add(case.get("expect"))
+        for r in routed:
+            if r not in expected:
+                fail(f"{r} is routed to but has no eval case, so its routing is untested")
+
+    if len(skill.split("\n")) > SKILL_MD_MAX_LINES:
+        fail(f"SKILL.md is {len(skill.split(chr(10)))} lines, over the "
+             f"{SKILL_MD_MAX_LINES}-line router ceiling")
 
     # Keyword list must match the README table, in the same order.
     kw_lines = [l for l in skill.split("\n") if l.startswith("`draft`")]
@@ -135,7 +207,9 @@ def main():
     if "<!-- No entries yet -->" not in pulse:
         fail("pulse-log.md: must ship with no entries")
 
-    print(f"checked {len(refs)} reference files, {len(routed)} routing rows")
+    print(f"checked {len(refs)} reference files, {len(routed)} routing rows, "
+          f"{len(examples)} examples, "
+          f"{len([f for f in os.listdir(SCRIPT_DIR) if f.endswith(chr(46) + chr(112) + chr(121))]) if os.path.isdir(SCRIPT_DIR) else 0} tools")
 
 
 main()

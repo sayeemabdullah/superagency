@@ -31,6 +31,21 @@ One decision per view. A dashboard nobody acts on is decoration. Separate the we
 ## Output
 UTM conventions, tracking plans, dashboard specs → file (these become team reference docs). Quick checks and model explanations → inline.
 
+## Tools
+Build tagged URLs through the script so casing and separators can't drift, and
+audit existing ones in bulk.
+
+```bash
+python3 scripts/utm.py build --url https://example.com/pricing \
+  --source linkedin --medium cpc --campaign spring-launch --content hero-a
+
+python3 scripts/utm.py check urls.txt
+```
+
+`check` catches the failure this file warns about: campaign names that differ
+only by case or separator become separate rows in every report. It reports those
+as drift, grouped by what they normalize to.
+
 ## Rules
 - Distinguish measurable from attributable. Brand, word of mouth, and dark social drive conversions that never show in the data.
 - Flag when tracking is set up in a way that will produce misleading numbers.

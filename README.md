@@ -185,6 +185,8 @@ superagency/
     └── pulse-log.md      # stateful — accumulates weekly metrics
 ```
 
+It also ships six Python tools it actually runs, so the numbers aren't guessed.
+
 Skills load in three stages: the `description` is always in context, the SKILL.md body loads when the skill triggers, and reference files load only when needed. Putting all 25 workflows in one file would mean loading ~35,000 characters of mostly-irrelevant instructions on every request.
 
 So `SKILL.md` is just a routing table. Ask about SEO, it reads `references/seo.md` and nothing else.
@@ -219,6 +221,45 @@ To trim: after a few weeks, delete reference files that never get routed to. Ant
 
 ---
 
+## It computes instead of guessing
+
+Most marketing skills are prose. This one bundles executable tools, because its own rules demand precision a language model can't reliably produce by reasoning — `testing.md` forbids calling a winner on underpowered data, `paid.md` lists character limits, `analytics.md` calls inconsistent UTMs the top cause of broken reporting.
+
+| Tool | Replaces | Used by |
+|---|---|---|
+| `ab.py` | Statistics done in your head | `testing.md` |
+| `adlint.py` | Counting characters by eye | `paid.md` |
+| `utm.py` | Staying consistent by hand | `analytics.md` |
+| `budget.py` | A four-step arithmetic chain | `budget.md` |
+| `readability.py` | "This reads well, I think" | `content.md`, `brand.md` |
+| `pulse.py` | Free-form log entries `trend` can't parse | `reporting.md` |
+
+Standard library only — the skill sandbox has no network, so there's nothing to install. A standing rule in `SKILL.md` tells Claude never to estimate what a tool computes, and to show the command it ran.
+
+```
+You:    Is a 3% lift on 400 visitors significant?
+Claude: [runs ab.py result --a 400 12 --b 400 13]
+        p=0.839. Inconclusive, and underpowered — detecting a 20% lift
+        needs ~13,900 per variant. This is not a loss, it's no data.
+```
+
+### Worked examples
+
+`references/examples/` holds four reference-quality outputs — a campaign brief, battlecard, landing page teardown, and weekly pulse — loaded only when that workflow runs. Every number in them is invented and each carries a banner saying so, because the skill's central rule is never to present invented figures as evidence.
+
+### Routing evals
+
+A router skill degrades silently: add an overlapping workflow and requests quietly land in the wrong file. `evals/routing.jsonl` holds 53 prompts with the file each should reach, covering all 25 workflows.
+
+```bash
+export ANTHROPIC_API_KEY=sk-...
+make eval
+```
+
+Deliberately not in CI — it costs money and isn't deterministic. Run it after adding a workflow and compare against your last score.
+
+---
+
 ## Building and releasing
 
 **You never build, commit, or push `superagency.skill`.** CI owns that file.
@@ -228,12 +269,13 @@ Edit `superagency/`, open a PR, and that's the whole job. CI rebuilds the archiv
 ```bash
 make hooks    # once — installs a pre-commit guard against hand-built archives
 make check    # structural validation, same as CI
+make test     # unit tests for the bundled tools
 make skill    # rebuild locally to inspect; do not commit the result
 ```
 
 | When | What runs |
 |---|---|
-| Every PR | `validate.yml` — validates, rebuilds, and commits the archive to the PR branch if it's stale |
+| Every PR | `validate.yml` — validates, runs the tool tests, rebuilds, and commits the archive to the PR branch if it's stale |
 | Push to `main` | Same workflow in verify-only mode; fails if `main`'s archive drifts from source |
 | Push a `v*` tag | `release.yml` — validates, builds, and attaches `superagency.skill` to a GitHub Release |
 
@@ -254,6 +296,8 @@ git tag v1.1 && git push origin v1.1
 A consequence worth knowing: if you run `make skill` and your source matches `main`, the rebuild is byte-identical and leaves your tree clean. A diff means your source genuinely changed — and CI will commit that rebuild for you.
 
 `scripts/validate.py` enforces the invariants that break the skill silently: frontmatter is exactly `name` + `description` on one line, every routing row resolves to a real file, every workflow file has `Rules` and `Output`, cross-references resolve, the keyword list matches the README table, every workflow appears in the `description`, and both stateful files ship empty.
+
+It also covers the tooling: every referenced script exists, every shipped script is referenced by something, **every tool's `--help` actually runs** (a stray `%` in an argparse help string is enough to break it, and did), every example carries its illustrative banner, and every routed workflow has an eval case.
 
 ---
 
@@ -290,7 +334,7 @@ GitHub calls it a pull request; GitLab calls the same thing a merge request. Eit
    git checkout -b add-podcast-workflow
    ```
 
-3. **Make the change.** For a new workflow that's four edits: the new `references/<name>.md`, a routing row in `SKILL.md`, the keyword list, and the `description` field. Add a row to the keyword table in this README too.
+3. **Make the change.** For a new workflow that's four edits: the new `references/<name>.md`, a routing row in `SKILL.md`, the keyword list, and the `description` field. Add a row to the keyword table in this README too, and at least one case to `evals/routing.jsonl` — the validator fails without it.
 
 4. **Validate** — the same checks CI runs:
 

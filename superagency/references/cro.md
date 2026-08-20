@@ -19,6 +19,8 @@ When conversion is down, isolate *where*: traffic quality, page bounce, form sta
 ## Output
 Teardowns → inline, as an annotated list ordered by expected impact, each item: what's wrong → why it costs conversions → the fix. Full multi-page audits → file.
 
+For shape, see `references/examples/landing-page-teardown.md` — severity-labelled, ordered by impact, and it asks for funnel numbers before trusting its own diagnosis.
+
 ## Rules
 - Recommend one change at a time if they're testing; simultaneous changes make results unreadable.
 - Prioritize by expected impact — headline and offer beat design tweaks nearly every time.

@@ -34,3 +34,5 @@ Timeline, budget, and whether there's a hard date. These three change the plan m
 
 ## Output
 Campaign brief → markdown file (these get shared and saved).
+
+For shape, see `references/examples/campaign-brief.md` — note how it justifies each channel, names a cut one, and states what it refuses to forecast.
