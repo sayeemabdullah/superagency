@@ -72,13 +72,17 @@ Download [`superagency.skill`](../../raw/main/superagency.skill) from this repo,
 
 You never build it yourself. CI rebuilds the archive from `superagency/` on every PR and commits it, so the copy on `main` always matches the source.
 
-**Option B — clone and zip it yourself**
+**Option B — build it from a clone**
+
+Only needed if you've made local changes you haven't pushed yet:
 
 ```bash
 git clone https://github.com/sayeemabdullah/superagency.git
 cd superagency
-zip -r superagency.zip superagency/
+./scripts/build.sh
 ```
+
+Use the script rather than a bare `zip` — it produces the same bytes CI does, and fails if the archive root isn't `superagency/`, which is what Claude.ai rejects on upload.
 
 The `superagency/` folder must be at the root of the archive.
 
@@ -105,13 +109,11 @@ Write a LinkedIn post announcing our new pricing tier.
 
 Claude.ai has **no in-place update**. Uploading a revised file does not replace the copy already installed — you get a second skill with the same `name`, and two skills answering to `/superagency` route unpredictably. Delete the old one first.
 
-### Pull and repackage
+### Get the new file
 
-```bash
-git pull
-```
+Download it from [Releases](../../releases/latest), or `git pull` if you have a clone.
 
-That's it — `superagency.skill` on `main` is always current, because CI rebuilt it when the change merged.
+Either way it's already built. Nothing to package, nothing to run — CI rebuilt the archive when the change merged, and attached it to the release when the version was tagged.
 
 ### Replace it in Claude.ai
 
@@ -128,11 +130,9 @@ Deleting is safe: the skill folder is stateless instruction. Nothing is stored s
 
 `references/brand.md` and `references/pulse-log.md` are written to *during conversations*, and those edits live in the chat session — not in the copy you uploaded. Re-uploading resets both to blank templates.
 
-So before you delete: open the skill in Claude, ask it to print the current contents of both files, and paste them into your local copies. Then repackage. Otherwise you lose your voice profile and your accumulated pulse history.
+So before you delete: open the skill in Claude, ask it to print the current contents of both files, and paste them into your local copies. Otherwise you lose your voice profile and your accumulated pulse history.
 
-Commit those edits as a normal PR; CI rebuilds the archive around them.
-
-Committing your filled-in `brand.md` is the reliable fix — then every repackage carries it.
+The durable fix is to commit your filled-in `brand.md` as a normal PR. CI rebuilds the archive around it, and every build from then on carries your profile — no manual step to remember.
 
 ### In Claude Code
 
@@ -146,11 +146,15 @@ If you copied instead of symlinking, re-copy: `rm -rf ~/.claude/skills/superagen
 
 ### Checking whether you're out of date
 
+Releases are versioned, so compare tags rather than guessing:
+
 ```bash
-git log -1 --format='%h %cd %s' --date=short -- superagency/
+gh release view --repo sayeemabdullah/superagency --json tagName --jq .tagName
 ```
 
-Compare against what you last uploaded. There's no version string inside the skill — if in doubt, repackage and re-upload; it costs a minute and is always safe.
+Or just look at [Releases](../../releases/latest). If that tag is newer than the one you installed, re-download and re-upload.
+
+There's no version string inside the skill itself, so Claude can't tell you which build is loaded. If you're unsure, re-download and re-upload — it costs a minute and is always safe.
 
 ---
 
@@ -217,7 +221,9 @@ To trim: after a few weeks, delete reference files that never get routed to. Ant
 
 ## Building and releasing
 
-**Never build `superagency.skill` by hand.** CI owns it. Edit `superagency/`, open a PR, and the archive is rebuilt and committed to your branch automatically.
+**You never build, commit, or push `superagency.skill`.** CI owns that file.
+
+Edit `superagency/`, open a PR, and that's the whole job. CI rebuilds the archive, commits it to your branch, and it reaches `main` with your merge. Releases are built and published by CI too. If you find yourself running `zip`, something has gone wrong — `make hooks` installs a guard that stops the archive being staged by hand.
 
 ```bash
 make hooks    # once — installs a pre-commit guard against hand-built archives
@@ -231,11 +237,15 @@ make skill    # rebuild locally to inspect; do not commit the result
 | Push to `main` | Same workflow in verify-only mode; fails if `main`'s archive drifts from source |
 | Push a `v*` tag | `release.yml` — validates, builds, and attaches `superagency.skill` to a GitHub Release |
 
-Cutting a release:
+### Cutting a release
+
+A maintainer pushes a tag; CI does everything else:
 
 ```bash
 git tag v1.1 && git push origin v1.1
 ```
+
+`release.yml` validates, builds, creates the GitHub Release, and attaches `superagency.skill` to it. No archive is uploaded by hand, and the released asset is byte-identical to the one on `main` — the build is deterministic, so the same source always produces the same file.
 
 ### Why the build is deterministic
 
@@ -288,7 +298,7 @@ GitHub calls it a pull request; GitLab calls the same thing a merge request. Eit
    make check
    ```
 
-   Don't commit `superagency.skill`. CI rebuilds it and commits it to your branch; `make hooks` installs a guard that stops you staging it by accident.
+   **Leave `superagency.skill` alone** — don't build it, don't stage it, don't push it. CI rebuilds it and commits it to your branch for you. Run `make hooks` once and git will stop you staging it by accident.
 
 5. **Commit and push:**
 
