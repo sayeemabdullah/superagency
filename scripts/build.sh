@@ -8,6 +8,13 @@
 # identical archive, so "did this actually change?" is just a byte comparison.
 set -euo pipefail
 
+# Both matter for byte-identical output across machines:
+#   LC_ALL=C  - sort order is locale-dependent. Under macOS's UTF-8 collation
+#               "references/" sorts before "SKILL.md"; under C it's the reverse,
+#               so a mac build and a Linux build disagreed on entry order.
+#   TZ=UTC    - zip stores DOS-local timestamps; a fixed zone keeps them stable.
+export LC_ALL=C TZ=UTC
+
 cd "$(dirname "$0")/.."
 OUT="$(pwd)/${1:-superagency.skill}"
 
