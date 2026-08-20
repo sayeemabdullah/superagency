@@ -20,6 +20,18 @@ Covers: blog posts, social captions, email copy, landing page copy, ad copy, cas
 | Case study | 500-900 words | Problem → approach → result, with a real number in the result. |
 | Newsletter | 300-800 words | One theme per issue, consistent sections, 2-4 links max. |
 
+## Tools
+Score a draft before defending it. Measurable things should be measured.
+
+```bash
+python3 scripts/readability.py draft.md --channel linkedin
+```
+
+Reports reading ease, grade level, sentence-length outliers, passive
+constructions, and the filler words this file says to cut. Channels:
+`linkedin`, `x`, `instagram`, `email-subject`, `email-body`, `blog`,
+`case-study` — length is checked against the norms table above.
+
 ## Rules
 - Lead with the benefit, not the feature.
 - Cut adjectives that survive deletion. "Powerful, innovative solution" says nothing.

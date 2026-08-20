@@ -16,6 +16,9 @@ jobs:
       - name: Validate skill structure
         run: python3 scripts/validate.py
 
+      - name: Test bundled tools
+        run: python3 -m unittest discover -s tests -q
+
       - name: Build archive
         run: ./scripts/build.sh
 

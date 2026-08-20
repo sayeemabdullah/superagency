@@ -17,6 +17,23 @@ Adds: goal attainment vs target, channel-by-channel breakdown, spend efficiency,
 ## Output
 Pulse → inline, copy-pasteable into Slack or email. Monthly/quarterly reviews → file.
 
+For shape, see `references/examples/weekly-pulse.md` — note the anomaly called out separately, the metric that looks good but isn't, and the single action.
+
+## Tools
+Write entries through the script so every week has the identical structure that
+`trend` depends on.
+
+```bash
+python3 scripts/pulse.py append --week 2026-08-10 2026-08-16 \
+  --win "signups 412 (+18%% wow)" --miss "demo requests 22 (-9%% wow)" \
+  --next-action "test the pricing page hero"
+
+python3 scripts/pulse.py trend
+```
+
+`trend` parses every entry and reports direction across the whole range. If it
+finds only one data point for a metric, say so rather than implying a trend.
+
 ## Rules
 - Don't report metrics without context. "1,200 clicks" means nothing; "1,200 clicks, up 40% on a flat budget" means something.
 - Distinguish correlation from cause. If traffic rose the same week as a campaign *and* a press mention, say both.

@@ -1,0 +1,53 @@
+{"prompt": "Write a LinkedIn post announcing our new pricing tier", "expect": "content.md"}
+{"prompt": "Draft a case study about the Acme migration", "expect": "content.md"}
+{"prompt": "I need a newsletter intro for this month", "expect": "content.md"}
+{"prompt": "Plan a 6-week launch for our API, budget $15k", "expect": "campaigns.md"}
+{"prompt": "Build me a content calendar for Q4", "expect": "campaigns.md"}
+{"prompt": "Does this landing page copy sound like us?", "expect": "brand.md"}
+{"prompt": "Set up our tone of voice from these four posts", "expect": "brand.md"}
+{"prompt": "Why isn't our pricing page ranking?", "expect": "seo.md"}
+{"prompt": "Audit the site for technical SEO issues", "expect": "seo.md"}
+{"prompt": "What keywords should we target for invoicing software?", "expect": "seo.md"}
+{"prompt": "Build a 5-email onboarding flow for free-trial signups", "expect": "email-sequences.md"}
+{"prompt": "We need a win-back sequence for churned accounts", "expect": "email-sequences.md"}
+{"prompt": "Write 5 Google Search headline variants for time tracking software", "expect": "paid.md"}
+{"prompt": "Our Meta ads aren't converting, what should we change?", "expect": "paid.md"}
+{"prompt": "Is this ad copy within LinkedIn's character limits?", "expect": "paid.md"}
+{"prompt": "Our demo page converts at 1.2%, tear it down", "expect": "cro.md"}
+{"prompt": "Where are people dropping out of our signup funnel?", "expect": "cro.md"}
+{"prompt": "Build a battlecard against Linear", "expect": "competitive.md"}
+{"prompt": "What are our three biggest competitors saying about pricing?", "expect": "competitive.md"}
+{"prompt": "Draft a press release for our Series A", "expect": "pr.md"}
+{"prompt": "Pitch this launch to TechCrunch", "expect": "pr.md"}
+{"prompt": "Give us 4 content pillars and a weekly LinkedIn cadence", "expect": "social.md"}
+{"prompt": "How often should we post on TikTok?", "expect": "social.md"}
+{"prompt": "We sound like everyone else, sharpen our value prop", "expect": "positioning.md"}
+{"prompt": "Come up with some tagline options", "expect": "positioning.md"}
+{"prompt": "Define the ICP for a self-serve devtool at $29/mo", "expect": "persona.md"}
+{"prompt": "Who actually buys this and what do they care about?", "expect": "persona.md"}
+{"prompt": "Set up a UTM convention our whole team can follow", "expect": "analytics.md"}
+{"prompt": "Which attribution model should we be using?", "expect": "analytics.md"}
+{"prompt": "Is a 3% lift on 400 visitors actually significant?", "expect": "testing.md"}
+{"prompt": "How long do we need to run this experiment?", "expect": "testing.md"}
+{"prompt": "Script a 45-second Reel on our biggest customer win", "expect": "video.md"}
+{"prompt": "Give me YouTube title and thumbnail ideas", "expect": "video.md"}
+{"prompt": "Users sign up then vanish by day 3, what do we do?", "expect": "lifecycle.md"}
+{"prompt": "How do we stop churn in month two?", "expect": "lifecycle.md"}
+{"prompt": "Draft outreach to a 30k-follower dev creator", "expect": "influencer.md"}
+{"prompt": "What should we pay a creator for three videos?", "expect": "influencer.md"}
+{"prompt": "Build the promo timeline for a webinar in 5 weeks", "expect": "events.md"}
+{"prompt": "We have a booth at a conference next month, what now?", "expect": "events.md"}
+{"prompt": "Our Discord is dead, how do we restart it?", "expect": "community.md"}
+{"prompt": "Should we even start a Slack community?", "expect": "community.md"}
+{"prompt": "Pitch a co-marketing webinar to a complementary SaaS", "expect": "partnership.md"}
+{"prompt": "How should we structure an affiliate program?", "expect": "partnership.md"}
+{"prompt": "Split $40k/quarter across paid, content, and events", "expect": "budget.md"}
+{"prompt": "Can we hit 3000 signups on the budget we have?", "expect": "budget.md"}
+{"prompt": "Write a brief for a designer doing our conference booth", "expect": "creative-brief.md"}
+{"prompt": "I need to brief an agency on a rebrand", "expect": "creative-brief.md"}
+{"prompt": "Someone's angry at us on Twitter and it's spreading", "expect": "crisis.md"}
+{"prompt": "We had an outage, what do we tell customers?", "expect": "crisis.md"}
+{"prompt": "Pitch me as a guest on marketing ops podcasts", "expect": "podcast.md"}
+{"prompt": "Should we start our own show?", "expect": "podcast.md"}
+{"prompt": "How did we do this week? Signups 412, demos 22", "expect": "reporting.md"}
+{"prompt": "What's actually moved over the last quarter?", "expect": "reporting.md"}

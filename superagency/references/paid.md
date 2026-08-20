@@ -26,6 +26,20 @@ Test one variable at a time. Suggest 3-5 variants on the hook or headline first;
 ## Output
 Ad copy variants → inline, grouped by platform with character counts shown. Campaign strategy and structure → file.
 
+## Tools
+Character counts are mechanical and easy to get wrong by eye. Lint every set of
+ad copy before handing it over.
+
+```bash
+python3 scripts/adlint.py google \
+  --headline "Cut invoicing to 20 minutes" --headline "Stop chasing paperwork" \
+  --description "Try it free for 14 days. No card needed."
+```
+
+Platforms: `google`, `meta`, `linkedin`, `x`, `tiktok`. Hard limits are rejected
+on submit; soft limits are truncation thresholds and are a judgement call. The
+script prints when its specs were last verified — if that's stale, search.
+
 ## Rules
 - Never promise specific CPA/ROAS figures.
 - Flag any claim in ad copy that would need substantiation (superlatives, comparative claims, health/financial results).

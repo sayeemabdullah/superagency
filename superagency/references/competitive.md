@@ -24,6 +24,8 @@ For sales use: their pitch → our counter → proof point. Keep each to one lin
 ## Output
 Competitive briefs and battlecards → file (sales will reuse them). A quick "what is X doing" check → inline.
 
+For shape, see `references/examples/battlecard.md` — one line per row, an honest "where they're strong," and an explicit do-not-say list.
+
 ## Rules
 - Stay factual and fair. Don't write disparaging claims that can't be substantiated — it's a legal risk in comparative marketing.
 - Distinguish what's verified from what's inferred.
