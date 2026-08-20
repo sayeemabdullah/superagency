@@ -68,9 +68,9 @@ Go to **Settings → Capabilities** and turn on **Code execution and file creati
 
 **Option A — download the packaged file**
 
-Download `superagency.skill` from the [latest release](../../releases/latest).
+Download [`superagency.skill`](../../raw/main/superagency.skill) from this repo, or grab a pinned version from [Releases](../../releases/latest).
 
-The archive isn't committed to the repo — CI builds it from `superagency/` on every tagged release, so the download always matches the source.
+You never build it yourself. CI rebuilds the archive from `superagency/` on every PR and commits it, so the copy on `main` always matches the source.
 
 **Option B — clone and zip it yourself**
 
@@ -107,19 +107,11 @@ Claude.ai has **no in-place update**. Uploading a revised file does not replace 
 
 ### Pull and repackage
 
-Grab the newest build from [Releases](../../releases/latest) — no local steps needed.
-
-To build from your own working copy instead (after local edits):
-
 ```bash
-make skill
+git pull
 ```
 
-or, without make:
-
-```bash
-zip -rq superagency.skill superagency/ -x "*.DS_Store" "*__pycache__*"
-```
+That's it — `superagency.skill` on `main` is always current, because CI rebuilt it when the change merged.
 
 ### Replace it in Claude.ai
 
@@ -138,10 +130,7 @@ Deleting is safe: the skill folder is stateless instruction. Nothing is stored s
 
 So before you delete: open the skill in Claude, ask it to print the current contents of both files, and paste them into your local copies. Then repackage. Otherwise you lose your voice profile and your accumulated pulse history.
 
-```bash
-# after pasting the saved contents back in
-make skill
-```
+Commit those edits as a normal PR; CI rebuilds the archive around them.
 
 Committing your filled-in `brand.md` is the reliable fix — then every repackage carries it.
 
@@ -228,24 +217,31 @@ To trim: after a few weeks, delete reference files that never get routed to. Ant
 
 ## Building and releasing
 
-`superagency.skill` is generated, never committed.
+**Never build `superagency.skill` by hand.** CI owns it. Edit `superagency/`, open a PR, and the archive is rebuilt and committed to your branch automatically.
 
 ```bash
-make check    # structural validation — what CI runs
-make skill    # build superagency.skill locally
-make clean
+make hooks    # once — installs a pre-commit guard against hand-built archives
+make check    # structural validation, same as CI
+make skill    # rebuild locally to inspect; do not commit the result
 ```
 
 | When | What runs |
 |---|---|
-| Every PR and push to `main` | `validate.yml` — validates, builds, verifies the archive root is `superagency/`, uploads the build as a 14-day artifact |
-| Push a `v*` tag | `release.yml` — validates, builds, and publishes a GitHub Release with `superagency.skill` attached |
+| Every PR | `validate.yml` — validates, rebuilds, and commits the archive to the PR branch if it's stale |
+| Push to `main` | Same workflow in verify-only mode; fails if `main`'s archive drifts from source |
+| Push a `v*` tag | `release.yml` — validates, builds, and attaches `superagency.skill` to a GitHub Release |
 
 Cutting a release:
 
 ```bash
 git tag v1.1 && git push origin v1.1
 ```
+
+### Why the build is deterministic
+
+`scripts/build.sh` normalizes file timestamps and sorts the file list before zipping. Without that, `zip` embeds mtimes and every rebuild produces different bytes — CI would commit a phantom change on every push, and each bot commit would retrigger the build. Normalized, identical content always yields an identical archive, so "has this actually changed?" is a byte comparison.
+
+A consequence worth knowing: if you run `make skill` and your source matches `main`, the rebuild is byte-identical and leaves your tree clean. A diff means your source genuinely changed — and CI will commit that rebuild for you.
 
 `scripts/validate.py` enforces the invariants that break the skill silently: frontmatter is exactly `name` + `description` on one line, every routing row resolves to a real file, every workflow file has `Rules` and `Output`, cross-references resolve, the keyword list matches the README table, every workflow appears in the `description`, and both stateful files ship empty.
 
@@ -292,7 +288,7 @@ GitHub calls it a pull request; GitLab calls the same thing a merge request. Eit
    make check
    ```
 
-   Don't commit `superagency.skill`; it's gitignored and CI builds it on release.
+   Don't commit `superagency.skill`. CI rebuilds it and commits it to your branch; `make hooks` installs a guard that stops you staging it by accident.
 
 5. **Commit and push:**
 

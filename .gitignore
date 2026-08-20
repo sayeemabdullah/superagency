@@ -3,6 +3,3 @@ __pycache__/
 *.pyc
 .env
 node_modules/
-
-# built by CI on tag push — see .github/workflows/release.yml
-superagency.skill

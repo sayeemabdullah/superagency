@@ -17,9 +17,7 @@ jobs:
         run: python3 scripts/validate.py
 
       - name: Build archive
-        run: |
-          zip -rq superagency.skill superagency/ -x "*.DS_Store" "*__pycache__*"
-          unzip -l superagency.skill
+        run: ./scripts/build.sh
 
       - name: Publish release
         env:
