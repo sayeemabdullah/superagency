@@ -2,6 +2,8 @@
 
 Covers: launches, lead-gen pushes, awareness campaigns, seasonal pushes, multi-week initiatives.
 
+Often pairs with: `content.md` (the assets), `social.md` (the calendar), `pr.md` (the announcement), `email-sequences.md` (the launch flow). Pull them only when that part of the work starts.
+
 ## Campaign brief structure
 1. **Objective & primary metric** — one metric, not five. "3,000 signups by Nov 30," not "increase awareness."
 2. **Audience** — who, and what they currently believe or do.

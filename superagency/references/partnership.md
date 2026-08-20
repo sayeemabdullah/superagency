@@ -20,6 +20,9 @@ Define up front: who creates what, who promotes when, who owns the leads, and ho
 - Tracking method
 - Disclosure requirements — same legal rules as influencer marketing
 
+## Output
+Partnership proposals and program terms → file. Partner evaluation and outreach drafts → inline.
+
 ## Rules
 - Get commitments in writing, including promotion dates.
 - Measure per partner, not in aggregate; one partner usually drives most of the result.

@@ -19,6 +19,9 @@ Split recommendations into:
 
 Prioritize by impact ÷ effort. Don't hand over an unranked list of 40 items.
 
+## Output
+Audits → file, quick wins first. Single-page or single-question checks → inline.
+
 ## Rules
 - Never promise rankings or timelines. SEO outcomes aren't guaranteeable.
 - Write for the reader first; keyword-stuffed copy loses on both fronts now.

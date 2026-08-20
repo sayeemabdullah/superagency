@@ -4,6 +4,8 @@
 
 ## Profile
 
+*Last updated: (date — refresh this line whenever the profile changes)*
+
 ### Audience
 (Who? What do they already know/believe?)
 
@@ -29,7 +31,8 @@
 2. Flag **specific lines** that drift — wrong tone, banned words, off-message claims, unsubstantiated superlatives. Not a vague overall verdict.
 3. Give a before/after for each flagged line.
 4. Note severity: blocking (legal/false claim), major (clearly off-voice), minor (nitpick).
-5. If the profile is still empty, say so and offer to build it from 3-5 examples the user considers on-brand, rather than guessing.
+5. If the profile is more than a few months old, ask whether it still holds before enforcing it strictly.
+6. If the profile is still empty, say so and offer to build it from 3-5 examples the user considers on-brand, rather than guessing.
 
 ## How to build a profile from examples
 Ask for 3-5 pieces they think sound right. Look for: sentence length, formality, use of "we" vs "you," humor, jargon tolerance, how they handle claims. Write the profile from patterns, then confirm with the user before saving.

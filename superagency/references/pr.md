@@ -2,6 +2,8 @@
 
 Covers: press releases, media pitches, announcements, bylines.
 
+Often pairs with: `crisis.md` when the press attention is negative.
+
 ## Press release structure
 - **Headline** — the news, plainly. Not a tagline.
 - **Dateline + lede** — who, what, when, where, why in the first sentence
@@ -14,6 +16,12 @@ Keep to 400-600 words.
 
 ## Media pitch
 Short. Subject line is the whole game. 3-4 sentences: why this matters to *their* readers, the news, the offer (interview, exclusive, data). Never send the release as the pitch.
+
+## Bylines
+An opinion piece under an exec's name for a trade publication. Pitch the *argument*, not the company — publications run points of view, not product tours. 600-900 words, one contrarian or earned insight, product mentioned once at most. Check the target publication's contributor guidelines before writing.
+
+## Output
+Releases and bylines → file. Pitches → inline (they're emails).
 
 ## Rules
 - Is it actually news? Funding, launches, major hires, data, partnerships are. Feature updates usually aren't.

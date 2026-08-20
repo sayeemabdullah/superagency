@@ -25,6 +25,12 @@ Define events before building: name, trigger, properties. Use a consistent namin
 
 Say which model the numbers use. Two people arguing about channel performance are usually using different models.
 
+## Dashboards
+One decision per view. A dashboard nobody acts on is decoration. Separate the weekly glance (5-7 numbers, trended) from the deep-dive (drillable). Lead with the metric the team is paid on, not the one that looks best.
+
+## Output
+UTM conventions, tracking plans, dashboard specs → file (these become team reference docs). Quick checks and model explanations → inline.
+
 ## Rules
 - Distinguish measurable from attributable. Brand, word of mouth, and dark social drive conversions that never show in the data.
 - Flag when tracking is set up in a way that will produce misleading numbers.

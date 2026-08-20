@@ -21,6 +21,12 @@ Separate committed costs (headcount, tools, retainers) from flexible spend (medi
 ## Building a business case
 Expected return, payback period, assumptions stated explicitly, and what happens if the key assumption is wrong. Give a range, not a single number.
 
+## Ask before planning
+Total budget, time horizon, and what current channels actually cost and return. Without the third, any allocation is a guess — label it as one.
+
+## Output
+Allocation plans and business cases → file, with an explicit assumptions table at the top. Quick gut-checks → inline.
+
 ## Rules
 - Never present a forecast as a commitment. Label assumptions.
 - Account for lag — SEO and content pay back over months; paid pays back immediately. A blended average hides this.

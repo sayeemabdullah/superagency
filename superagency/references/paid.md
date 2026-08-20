@@ -2,6 +2,8 @@
 
 Covers: Google, Meta, LinkedIn, X, TikTok ad copy and strategy.
 
+Often pairs with: `cro.md` — the landing page is half the campaign.
+
 ## Search first
 Ad format specs, character limits, and targeting options change often. Verify current specs before writing to them.
 
@@ -20,6 +22,9 @@ Ad format specs, character limits, and targeting options change often. Verify cu
 
 ## Creative testing
 Test one variable at a time. Suggest 3-5 variants on the hook or headline first; that moves numbers more than button color.
+
+## Output
+Ad copy variants → inline, grouped by platform with character counts shown. Campaign strategy and structure → file.
 
 ## Rules
 - Never promise specific CPA/ROAS figures.

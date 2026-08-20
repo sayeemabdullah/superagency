@@ -37,7 +37,7 @@ A full marketing team in one skill. Route the request to the right workflow, rea
 | Podcast guesting, launching a show, show notes | `references/podcast.md` |
 | Weekly/monthly metrics, wins and misses | `references/reporting.md` |
 
-If a request spans several (e.g. "plan our launch" touches campaigns + content + social + PR), start with the primary one and pull others in only as needed. Never read all of them.
+If a request spans several (e.g. "plan our launch" touches campaigns + content + social + PR), start with the primary one and pull others in only as needed. Never read all of them. Reference files name their usual companions in an "Often pairs with" line — follow those pointers rather than guessing.
 
 ## Workflow keywords
 

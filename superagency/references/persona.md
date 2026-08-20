@@ -19,6 +19,9 @@ Covers: ideal customer profile, buyer personas, jobs-to-be-done.
 - Buying role: user, champion, economic buyer, blocker
 - Objections they raise
 
+## Output
+Persona and ICP docs → file, one page per persona, labeled evidence-based or hypothesis at the top. Quick "who is this for" checks → inline.
+
 ## Rules
 - Build from evidence — sales calls, support tickets, interviews, analytics. Ask what the user has before inventing.
 - If there's no data, label it explicitly as a hypothesis to validate, not a finding.

@@ -2,6 +2,8 @@
 
 Covers: onboarding, activation, churn prevention, expansion, win-back.
 
+Often pairs with: `email-sequences.md` — lifecycle defines the trigger and stage, sequences define the emails.
+
 ## Lifecycle stages
 | Stage | Goal | Typical lever |
 |---|---|---|
@@ -16,6 +18,12 @@ The specific action correlated with retention (sent first invoice, invited a tea
 
 ## Churn signals
 Declining usage, dropped seats, support escalations, unrenewed integrations, champion leaves. Trigger intervention on signal, not on renewal date.
+
+## Measure it
+One metric per stage: activation rate (signup → activation moment), week-4 retention, logo and revenue churn separately, expansion revenue as % of total. Cohort these — a blended average across cohorts hides whether things are improving.
+
+## Output
+Lifecycle strategy and stage maps → file. Churn diagnosis and quick fixes → inline.
 
 ## Rules
 - Segment by behavior, not tenure. A power user at month 1 needs different messaging than a dormant user at month 12.
