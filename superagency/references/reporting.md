@@ -8,7 +8,7 @@ Covers: weekly pulse, monthly/quarterly reviews, trend summaries.
 3. **Anomalies** — sharp jumps or drops flagged separately, even if not top-3.
 4. **One recommended action** for next week. One, not five.
 5. **Trend** — compare to `pulse-log.md` if prior entries exist. Note direction, not just this week's raw number.
-6. Append this week's summary to `pulse-log.md` using the entry template at the top of that file — identical structure every week is what makes `trend` comparisons possible.
+6. Append this week's summary to `pulse-log.md` using the entry template at the top of that file — identical structure every week is what makes `trend` comparisons possible. Then print the appended entry so the user can save it to their local copy — the write does not survive the session.
 7. Format: ask Slack-style (short, scannable) or email-style (fuller, with greeting) if unclear.
 
 ## Monthly / quarterly review

@@ -34,5 +34,8 @@
 5. If the profile is more than a few months old, ask whether it still holds before enforcing it strictly.
 6. If the profile is still empty, say so and offer to build it from 3-5 examples the user considers on-brand, rather than guessing.
 
+## Persisting the profile
+This file resets to a blank template whenever the skill is re-uploaded. After writing a profile or changing one, print the complete file contents and tell the user to paste them into their local `references/brand.md` and repackage. Say this every time you write — it is not obvious, and losing the profile is silent.
+
 ## How to build a profile from examples
 Ask for 3-5 pieces they think sound right. Look for: sentence length, formality, use of "we" vs "you," humor, jargon tolerance, how they handle claims. Write the profile from patterns, then confirm with the user before saving.
