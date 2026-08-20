@@ -1,17 +1,19 @@
-.PHONY: check skill clean
+.PHONY: check skill hooks clean
 
 SKILL := superagency.skill
-SRC := $(shell find superagency -type f)
 
+## check — structural validation, same as CI
 check:
 	python3 scripts/validate.py
 
+## skill — rebuild the archive locally (deterministic; CI owns the committed copy)
 skill: check
-	rm -f $(SKILL)
-	zip -rq $(SKILL) superagency/ -x "*.DS_Store" "*__pycache__*"
-	@unzip -Z1 $(SKILL) | grep -qv '^superagency/' \
-		&& { echo "error: archive contains paths outside superagency/"; exit 1; } \
-		|| echo "built $(SKILL) ($$(du -h $(SKILL) | cut -f1))"
+	./scripts/build.sh
+
+## hooks — install the pre-commit guard against hand-built archives
+hooks:
+	@git config core.hooksPath scripts/hooks
+	@echo "hooks installed (core.hooksPath=scripts/hooks)"
 
 clean:
 	rm -f $(SKILL)

@@ -1,37 +1,63 @@
-name: Validate skill
+name: Validate and build
 
 on:
   pull_request:
   push:
     branches: [main]
 
+permissions:
+  contents: write
+
 jobs:
-  validate:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Check out the PR branch itself, not the merge commit, so the
+          # rebuilt archive can be committed back to it.
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
 
       - name: Validate skill structure
         run: python3 scripts/validate.py
 
-      - name: Build archive
-        run: |
-          zip -rq superagency.skill superagency/ -x "*.DS_Store" "*__pycache__*"
-          unzip -l superagency.skill
+      - name: Rebuild archive
+        run: ./scripts/build.sh
 
-      - name: Check archive root
+      - name: Did the archive change?
+        id: diff
         run: |
-          # Claude.ai rejects an archive whose paths don't start with superagency/
-          if unzip -Z1 superagency.skill | grep -qv '^superagency/'; then
-            echo "::error::archive contains paths outside superagency/"
-            unzip -Z1 superagency.skill | grep -v '^superagency/'
-            exit 1
+          # --porcelain also catches the untracked case, which git diff misses
+          if [ -z "$(git status --porcelain -- superagency.skill)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "archive is current"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "archive is stale — rebuilt from source"
           fi
-          echo "archive root is superagency/"
 
-      - name: Upload for inspection
-        uses: actions/upload-artifact@v4
-        with:
-          name: superagency-skill
-          path: superagency.skill
-          retention-days: 14
+      # Same-repo PR: commit the rebuild onto the PR branch, so the artifact
+      # arrives on main through the normal merge and main stays PR-only.
+      - name: Commit rebuilt archive
+        if: >
+          steps.diff.outputs.changed == 'true' &&
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add superagency.skill
+          git commit -m "chore: rebuild superagency.skill"
+          git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
+
+      # Fork PRs get a read-only token, and pushes to main are blocked by the
+      # protect-main ruleset. Neither can self-heal, so say so loudly.
+      - name: Report stale archive
+        if: >
+          steps.diff.outputs.changed == 'true' &&
+          !(github.event_name == 'pull_request' &&
+            github.event.pull_request.head.repo.full_name == github.repository)
+        run: |
+          echo "::error::superagency.skill does not match superagency/. A maintainer must run ./scripts/build.sh on a branch and merge it."
+          exit 1
