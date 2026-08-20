@@ -1,0 +1,37 @@
+name: Validate skill
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate skill structure
+        run: python3 scripts/validate.py
+
+      - name: Build archive
+        run: |
+          zip -rq superagency.skill superagency/ -x "*.DS_Store" "*__pycache__*"
+          unzip -l superagency.skill
+
+      - name: Check archive root
+        run: |
+          # Claude.ai rejects an archive whose paths don't start with superagency/
+          if unzip -Z1 superagency.skill | grep -qv '^superagency/'; then
+            echo "::error::archive contains paths outside superagency/"
+            unzip -Z1 superagency.skill | grep -v '^superagency/'
+            exit 1
+          fi
+          echo "archive root is superagency/"
+
+      - name: Upload for inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: superagency-skill
+          path: superagency.skill
+          retention-days: 14

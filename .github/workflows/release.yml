@@ -1,0 +1,38 @@
+name: Release skill
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate skill structure
+        run: python3 scripts/validate.py
+
+      - name: Build archive
+        run: |
+          zip -rq superagency.skill superagency/ -x "*.DS_Store" "*__pycache__*"
+          unzip -l superagency.skill
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$TAG" superagency.skill \
+            --title "$TAG" \
+            --notes-file - <<'NOTES'
+          Download `superagency.skill` below and upload it at
+          [Customize → Skills](https://claude.ai/customize/skills).
+
+          Already have an older version installed? Delete it first —
+          Claude.ai has no in-place update, and two skills sharing a name
+          route unpredictably. See the README section on updating.
+          NOTES

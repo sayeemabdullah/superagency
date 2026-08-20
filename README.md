@@ -68,7 +68,9 @@ Go to **Settings → Capabilities** and turn on **Code execution and file creati
 
 **Option A — download the packaged file**
 
-Download `superagency.skill` from this repo (or from [Releases](../../releases)).
+Download `superagency.skill` from the [latest release](../../releases/latest).
+
+The archive isn't committed to the repo — CI builds it from `superagency/` on every tagged release, so the download always matches the source.
 
 **Option B — clone and zip it yourself**
 
@@ -105,13 +107,19 @@ Claude.ai has **no in-place update**. Uploading a revised file does not replace 
 
 ### Pull and repackage
 
+Grab the newest build from [Releases](../../releases/latest) — no local steps needed.
+
+To build from your own working copy instead (after local edits):
+
 ```bash
-git pull
-rm -f superagency.skill
-zip -rq superagency.skill superagency/ -x "*.DS_Store" "*__pycache__*"
+make skill
 ```
 
-The archive is a build artifact — it goes stale the moment `superagency/` changes without a repackage. If you edited files locally, repackage even if `git pull` reported nothing new.
+or, without make:
+
+```bash
+zip -rq superagency.skill superagency/ -x "*.DS_Store" "*__pycache__*"
+```
 
 ### Replace it in Claude.ai
 
@@ -132,7 +140,7 @@ So before you delete: open the skill in Claude, ask it to print the current cont
 
 ```bash
 # after pasting the saved contents back in
-zip -rq superagency.skill superagency/ -x "*.DS_Store" "*__pycache__*"
+make skill
 ```
 
 Committing your filled-in `brand.md` is the reliable fix — then every repackage carries it.
@@ -212,9 +220,34 @@ To add a workflow:
 2. Add a row to the routing table in `SKILL.md`.
 3. Add the keyword to the keyword list in `SKILL.md`, and a row to the table in this README.
 4. **Add the domain to the `description` field.** This is the step people forget, and skipping it means the workflow never triggers — Claude decides whether to use a skill based only on its description.
-5. Repackage and re-upload — see [Updating an installed skill](#updating-an-installed-skill), and note that the old copy must be deleted first.
+5. Run `make check`, open a PR, then tag a release — see [Updating an installed skill](#updating-an-installed-skill), and note that the old copy must be deleted first.
 
 To trim: after a few weeks, delete reference files that never get routed to. Anthropic's own guidance favors focused skills over one that does everything, so treat this many workflows as a ceiling rather than a target — a tighter skill routes more accurately.
+
+---
+
+## Building and releasing
+
+`superagency.skill` is generated, never committed.
+
+```bash
+make check    # structural validation — what CI runs
+make skill    # build superagency.skill locally
+make clean
+```
+
+| When | What runs |
+|---|---|
+| Every PR and push to `main` | `validate.yml` — validates, builds, verifies the archive root is `superagency/`, uploads the build as a 14-day artifact |
+| Push a `v*` tag | `release.yml` — validates, builds, and publishes a GitHub Release with `superagency.skill` attached |
+
+Cutting a release:
+
+```bash
+git tag v1.1 && git push origin v1.1
+```
+
+`scripts/validate.py` enforces the invariants that break the skill silently: frontmatter is exactly `name` + `description` on one line, every routing row resolves to a real file, every workflow file has `Rules` and `Output`, cross-references resolve, the keyword list matches the README table, every workflow appears in the `description`, and both stateful files ship empty.
 
 ---
 
@@ -253,12 +286,13 @@ GitHub calls it a pull request; GitLab calls the same thing a merge request. Eit
 
 3. **Make the change.** For a new workflow that's four edits: the new `references/<name>.md`, a routing row in `SKILL.md`, the keyword list, and the `description` field. Add a row to the keyword table in this README too.
 
-4. **Repackage** so `superagency.skill` matches the source:
+4. **Validate** — the same checks CI runs:
 
    ```bash
-   rm -f superagency.skill
-   zip -rq superagency.skill superagency/ -x "*.DS_Store" "*__pycache__*"
+   make check
    ```
+
+   Don't commit `superagency.skill`; it's gitignored and CI builds it on release.
 
 5. **Commit and push:**
 
@@ -276,7 +310,7 @@ GitHub calls it a pull request; GitLab calls the same thing a merge request. Eit
 
    In the description, say which workflow you added and paste one example prompt that should route to it.
 
-Before you open it, check that `unzip -l superagency.skill` lists your new reference file, and that the skill still loads in a fresh Claude conversation.
+CI runs `scripts/validate.py` on every PR and fails on a routing row pointing at a missing file, a workflow file without its `Rules`/`Output` sections, keyword drift between `SKILL.md` and the table above, or a workflow missing from the `description` field.
 
 ---
 
