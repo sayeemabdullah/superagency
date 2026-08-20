@@ -1,6 +1,6 @@
 ---
 name: superagency
-description: Full-stack marketing agency skill covering content, campaigns, brand voice, SEO, email sequences, paid ads, landing pages and CRO, competitive research, PR, social, positioning, personas, analytics and attribution, A/B testing, video and short-form, lifecycle and retention, influencer marketing, events and webinars, community, partnerships, budget planning, creative briefs, crisis comms, and performance reporting. Use this whenever the user asks for anything marketing-related — writing copy, planning a launch, auditing SEO, building a nurture flow, checking brand voice, researching competitors, drafting a press release, scripting a video, planning spend, or summarizing metrics — even if they never say the word "marketing" (e.g. "write a LinkedIn post," "why isn't our page ranking," "how do we stop churn," "someone's angry at us on Twitter," "how did we do this week").
+description: Full-stack marketing agency skill covering content, campaigns, brand voice, SEO, email sequences, paid ads, landing pages and CRO, competitive research, PR, social, positioning, personas, analytics and attribution, A/B testing, video and short-form, podcasts and audio, lifecycle and retention, influencer marketing, events and webinars, community, partnerships, budget planning, creative briefs, crisis comms, and performance reporting. Use this whenever the user asks for anything marketing-related — writing copy, planning a launch, auditing SEO, building a nurture flow, checking brand voice, researching competitors, drafting a press release, scripting a video, pitching a podcast, planning spend, or summarizing metrics — even if they never say the word "marketing" (e.g. "write a LinkedIn post," "why isn't our page ranking," "how do we get on more podcasts," "how do we stop churn," "someone's angry at us on Twitter," "how did we do this week").
 ---
 
 # Superagency
@@ -34,13 +34,14 @@ A full marketing team in one skill. Route the request to the right workflow, rea
 | Channel allocation, forecasting, business cases | `references/budget.md` |
 | Briefing designers, agencies, freelancers | `references/creative-brief.md` |
 | Backlash, negative press, outages, complaints | `references/crisis.md` |
+| Podcast guesting, launching a show, show notes | `references/podcast.md` |
 | Weekly/monthly metrics, wins and misses | `references/reporting.md` |
 
 If a request spans several (e.g. "plan our launch" touches campaigns + content + social + PR), start with the primary one and pull others in only as needed. Never read all of them.
 
 ## Slash commands
 
-`/draft` `/campaign` `/voice` `/brand` `/seo` `/sequence` `/ads` `/cro` `/compete` `/pr` `/social` `/position` `/persona` `/analytics` `/test` `/video` `/lifecycle` `/influencer` `/event` `/community` `/partner` `/budget` `/brief` `/crisis` `/pulse` `/trend`
+`/draft` `/campaign` `/voice` `/brand` `/seo` `/sequence` `/ads` `/cro` `/compete` `/pr` `/social` `/position` `/persona` `/analytics` `/test` `/video` `/lifecycle` `/influencer` `/event` `/community` `/partner` `/budget` `/brief` `/crisis` `/podcast` `/pulse` `/trend`
 
 `/pulse` and `/trend` both use `references/reporting.md`.
 

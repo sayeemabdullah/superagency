@@ -1,6 +1,6 @@
 # Superagency
 
-A Claude Skill that acts as a full marketing team — 24 workflows covering content, campaigns, SEO, paid ads, email, conversion, PR, competitive research, lifecycle, analytics, and more.
+A Claude Skill that acts as a full marketing team — 25 workflows covering content, campaigns, SEO, paid ads, email, conversion, PR, competitive research, lifecycle, analytics, and more.
 
 Ask Claude a marketing question in plain language and it routes to the right workflow automatically. No prompt engineering, no re-explaining your context every time.
 
@@ -34,6 +34,7 @@ Ask Claude a marketing question in plain language and it routes to the right wor
 | `/budget` | Planning | Channel allocation, forecasting, business cases |
 | `/brief` | Creative briefs | Briefs for designers, agencies, freelancers |
 | `/crisis` | Issues response | Severity assessment, holding statements, escalation |
+| `/podcast` | Podcasts | Guest pitching, show format and cadence, show notes, repurposing |
 | `/pulse` | Weekly report | Wins, misses, anomalies, one recommended action |
 | `/trend` | Trend summary | Month/quarter rollup from your saved pulse history |
 
@@ -113,7 +114,7 @@ superagency/
     └── pulse-log.md      # stateful — accumulates weekly metrics
 ```
 
-Skills load in three stages: the `description` is always in context, the SKILL.md body loads when the skill triggers, and reference files load only when needed. Putting all 24 workflows in one file would mean loading ~35,000 characters of mostly-irrelevant instructions on every request.
+Skills load in three stages: the `description` is always in context, the SKILL.md body loads when the skill triggers, and reference files load only when needed. Putting all 25 workflows in one file would mean loading ~35,000 characters of mostly-irrelevant instructions on every request.
 
 So `SKILL.md` is just a routing table. Ask about SEO, it reads `references/seo.md` and nothing else.
 
@@ -141,7 +142,7 @@ To add a workflow:
 4. **Add the domain to the `description` field.** This is the step people forget, and skipping it means the workflow never triggers — Claude decides whether to use a skill based only on its description.
 5. Repackage and re-upload.
 
-To trim: after a few weeks, delete reference files that never get routed to. Anthropic's own guidance favors focused skills over one that does everything, so treat 24 workflows as a ceiling rather than a target — a tighter skill routes more accurately.
+To trim: after a few weeks, delete reference files that never get routed to. Anthropic's own guidance favors focused skills over one that does everything, so treat this many workflows as a ceiling rather than a target — a tighter skill routes more accurately.
 
 ---
 
@@ -160,6 +161,50 @@ Issues and PRs welcome, particularly:
 - Description tweaks that improve triggering accuracy
 
 If you're adding a workflow, follow the extension steps above and include an example prompt that should route to it.
+
+### Opening a pull request
+
+GitHub calls it a pull request; GitLab calls the same thing a merge request. Either way:
+
+1. **Fork** this repo (button at the top right), then clone your fork:
+
+   ```bash
+   git clone https://github.com/YOUR-FORK/superagency.git
+   cd superagency
+   ```
+
+2. **Branch** — never commit to `main` directly:
+
+   ```bash
+   git checkout -b add-podcast-workflow
+   ```
+
+3. **Make the change.** For a new workflow that's four edits: the new `references/<name>.md`, a routing row in `SKILL.md`, the slash command, and the `description` field. Add a row to the command table in this README too.
+
+4. **Repackage** so `superagency.skill` matches the source:
+
+   ```bash
+   rm -f superagency.skill
+   zip -rq superagency.skill superagency/ -x "*.DS_Store" "*__pycache__*"
+   ```
+
+5. **Commit and push:**
+
+   ```bash
+   git add -A
+   git commit -m "Add podcast workflow"
+   git push -u origin add-podcast-workflow
+   ```
+
+6. **Open the PR** — GitHub prints a link when you push, or use the CLI:
+
+   ```bash
+   gh pr create --fill
+   ```
+
+   In the description, say which workflow you added and paste one example prompt that should route to it.
+
+Before you open it, check that `unzip -l superagency.skill` lists your new reference file, and that the skill still loads in a fresh Claude conversation.
 
 ---
 
