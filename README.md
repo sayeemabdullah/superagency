@@ -99,6 +99,64 @@ Write a LinkedIn post announcing our new pricing tier.
 
 ---
 
+## Updating an installed skill
+
+Claude.ai has **no in-place update**. Uploading a revised file does not replace the copy already installed — you get a second skill with the same `name`, and two skills answering to `/superagency` route unpredictably. Delete the old one first.
+
+### Pull and repackage
+
+```bash
+git pull
+rm -f superagency.skill
+zip -rq superagency.skill superagency/ -x "*.DS_Store" "*__pycache__*"
+```
+
+The archive is a build artifact — it goes stale the moment `superagency/` changes without a repackage. If you edited files locally, repackage even if `git pull` reported nothing new.
+
+### Replace it in Claude.ai
+
+1. **Customize → Skills** ([claude.ai/customize/skills](https://claude.ai/customize/skills))
+2. Click the skill to open it
+3. Click **···** next to the toggle → **Delete** → confirm
+4. **+** → **Create skill** → **Upload a skill** → pick the new `superagency.skill`
+5. Toggle it on
+6. **Start a new conversation** — open chats keep the old version for their whole session
+
+Deleting is safe: the skill folder is stateless instruction. Nothing is stored server-side that a re-upload won't restore.
+
+### One thing you will lose
+
+`references/brand.md` and `references/pulse-log.md` are written to *during conversations*, and those edits live in the chat session — not in the copy you uploaded. Re-uploading resets both to blank templates.
+
+So before you delete: open the skill in Claude, ask it to print the current contents of both files, and paste them into your local copies. Then repackage. Otherwise you lose your voice profile and your accumulated pulse history.
+
+```bash
+# after pasting the saved contents back in
+zip -rq superagency.skill superagency/ -x "*.DS_Store" "*__pycache__*"
+```
+
+Committing your filled-in `brand.md` is the reliable fix — then every repackage carries it.
+
+### In Claude Code
+
+No archive, no delete step. If you symlinked it, `git pull` is the whole update:
+
+```bash
+ln -s "$PWD/superagency" ~/.claude/skills/superagency   # once
+```
+
+If you copied instead of symlinking, re-copy: `rm -rf ~/.claude/skills/superagency && cp -R superagency ~/.claude/skills/`.
+
+### Checking whether you're out of date
+
+```bash
+git log -1 --format='%h %cd %s' --date=short -- superagency/
+```
+
+Compare against what you last uploaded. There's no version string inside the skill — if in doubt, repackage and re-upload; it costs a minute and is always safe.
+
+---
+
 ## First run
 
 The first time you ask for anything customer-facing, the skill will ask three quick questions:
@@ -154,7 +212,7 @@ To add a workflow:
 2. Add a row to the routing table in `SKILL.md`.
 3. Add the keyword to the keyword list in `SKILL.md`, and a row to the table in this README.
 4. **Add the domain to the `description` field.** This is the step people forget, and skipping it means the workflow never triggers — Claude decides whether to use a skill based only on its description.
-5. Repackage and re-upload.
+5. Repackage and re-upload — see [Updating an installed skill](#updating-an-installed-skill), and note that the old copy must be deleted first.
 
 To trim: after a few weeks, delete reference files that never get routed to. Anthropic's own guidance favors focused skills over one that does everything, so treat this many workflows as a ceiling rather than a target — a tighter skill routes more accurately.
 

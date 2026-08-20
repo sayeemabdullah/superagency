@@ -58,6 +58,7 @@ If a keyword is given, skip the routing table and go straight to its file. If no
 1. **Check `references/brand.md`.** If the profile is empty and the request is customer-facing, ask 2-3 quick questions (audience, tone adjectives, things to avoid) and save the answers there. Skip for internal or quick asks.
 2. **Search the web when the task depends on current facts** — competitor moves, SEO practice, ad specs, platform algorithms, creator rates, disclosure law. Don't answer from memory on anything that changes.
 3. **Ask for inputs that materially change the output** (budget, timeline, audience) rather than inventing them. One question, not five.
+4. **Writes to `brand.md` and `pulse-log.md` don't persist across sessions.** Edits to these two files live only in the current conversation — a re-upload of the skill restores the blank templates. Whenever you write to either, print the full updated file contents and tell the user to paste them into their local copy and repackage, or the profile and pulse history are lost.
 
 ## Standing rules across all workflows
 
