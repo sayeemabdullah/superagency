@@ -24,5 +24,11 @@ Add a phased structure: pre-launch (tease, waitlist), launch day (announcement a
 ## Ask before planning
 Timeline, budget, and whether there's a hard date. These three change the plan more than anything else.
 
+## Rules
+- Never invent a budget, timeline, or headcount that wasn't given. Ask, or mark it clearly as a placeholder the user must fill.
+- Don't forecast results for a channel mix with no historical data behind it. Label projections as assumptions to validate, not expectations.
+- Every channel needs a stated rationale. A channel nobody can justify gets cut, not funded.
+- Flag dependencies that land after the deliverable they block — that's the most common way calendars break.
+
 ## Output
 Campaign brief → markdown file (these get shared and saved).

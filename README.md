@@ -8,37 +8,49 @@ Ask Claude a marketing question in plain language and it routes to the right wor
 
 ## What it does
 
-| Command | Workflow | Covers |
-|---|---|---|
-| `/draft` | Content | Blogs, social, email, ads, case studies — with per-channel length norms |
-| `/campaign` | Campaign planning | Briefs, content calendars, launch phasing, dependency checks |
-| `/voice` | Brand check | Flags off-voice lines with before/after fixes and severity levels |
-| `/brand` | Brand profile | Builds your voice profile from examples you consider on-brand |
-| `/seo` | SEO | Keywords, on-page, content gaps, technical — split into quick wins vs strategic |
-| `/sequence` | Email flows | Onboarding, nurture, re-engagement, win-back, launch — with branching logic |
-| `/ads` | Paid | Google, Meta, LinkedIn, TikTok copy + creative testing strategy |
-| `/cro` | Conversion | Landing page teardowns, funnel drop-off diagnosis |
-| `/compete` | Competitive | Battlecards, positioning gaps, white-space analysis |
-| `/pr` | Press | Releases, media pitches, announcements |
-| `/social` | Social | Content pillars, platform cadence, calendars |
-| `/position` | Positioning | Value props, messaging hierarchy, taglines |
-| `/persona` | Personas | ICP definition, buyer personas, jobs-to-be-done |
-| `/analytics` | Tracking | UTM conventions, event naming, attribution models |
-| `/test` | Experiments | A/B test design, sample size, reading results honestly |
-| `/video` | Video | YouTube, Reels, TikTok scripts, hooks, titles, thumbnails |
-| `/lifecycle` | Retention | Activation, churn signals, expansion, win-back |
-| `/influencer` | Creators | Sourcing, outreach, briefs, disclosure requirements |
-| `/event` | Events | Webinars, conferences, promo timelines, follow-up |
-| `/community` | Community | Slack/Discord strategy, engagement loops, health metrics |
-| `/partner` | Partnerships | Co-marketing, affiliates, lead-sharing agreements |
-| `/budget` | Planning | Channel allocation, forecasting, business cases |
-| `/brief` | Creative briefs | Briefs for designers, agencies, freelancers |
-| `/crisis` | Issues response | Severity assessment, holding statements, escalation |
-| `/podcast` | Podcasts | Guest pitching, show format and cadence, show notes, repurposing |
-| `/pulse` | Weekly report | Wins, misses, anomalies, one recommended action |
-| `/trend` | Trend summary | Month/quarter rollup from your saved pulse history |
+| Keyword | Workflow | Covers | Example |
+|---|---|---|---|
+| `draft` | Content | Blogs, social, email, ads, case studies — with per-channel length norms | *"Write a LinkedIn post announcing our new pricing tier"* |
+| `campaign` | Campaign planning | Briefs, content calendars, launch phasing, dependency checks | *"Plan a 6-week launch for our API, budget $15k"* |
+| `voice` | Brand check | Flags off-voice lines with before/after fixes and severity levels | *"Does this landing page copy sound like us?"* |
+| `brand` | Brand profile | Builds your voice profile from examples you consider on-brand | *"Build our voice profile from these 4 posts"* |
+| `seo` | SEO | Keywords, on-page, content gaps, technical — split into quick wins vs strategic | *"Why isn't our pricing page ranking?"* |
+| `sequence` | Email flows | Onboarding, nurture, re-engagement, win-back, launch — with branching logic | *"Build a 5-email onboarding flow for free-trial signups"* |
+| `ads` | Paid | Google, Meta, LinkedIn, TikTok copy + creative testing strategy | *"Write 5 Google Search headline variants for 'time tracking software'"* |
+| `cro` | Conversion | Landing page teardowns, funnel drop-off diagnosis | *"Our demo page converts at 1.2% — tear it down"* |
+| `compete` | Competitive | Battlecards, positioning gaps, white-space analysis | *"Build a battlecard against Linear"* |
+| `pr` | Press | Releases, media pitches, announcements | *"Draft a press release for our Series A"* |
+| `social` | Social | Content pillars, platform cadence, calendars | *"Give us 4 content pillars and a weekly LinkedIn cadence"* |
+| `position` | Positioning | Value props, messaging hierarchy, taglines | *"We sound like everyone else — sharpen our value prop"* |
+| `persona` | Personas | ICP definition, buyer personas, jobs-to-be-done | *"Define the ICP for a self-serve devtool at $29/mo"* |
+| `analytics` | Tracking | UTM conventions, event naming, attribution models | *"Set up a UTM convention our whole team can follow"* |
+| `test` | Experiments | A/B test design, sample size, reading results honestly | *"Is a 3% lift on 400 visitors actually significant?"* |
+| `video` | Video | YouTube, Reels, TikTok scripts, hooks, titles, thumbnails | *"Script a 45-second Reel on our biggest customer win"* |
+| `lifecycle` | Retention | Activation, churn signals, expansion, win-back | *"Users sign up then vanish by day 3 — what do we do?"* |
+| `influencer` | Creators | Sourcing, outreach, briefs, disclosure requirements | *"Draft outreach to a 30k-follower dev creator"* |
+| `event` | Events | Webinars, conferences, promo timelines, follow-up | *"Build the promo timeline for a webinar in 5 weeks"* |
+| `community` | Community | Slack/Discord strategy, engagement loops, health metrics | *"Our Discord is dead — how do we restart it?"* |
+| `partner` | Partnerships | Co-marketing, affiliates, lead-sharing agreements | *"Pitch a co-marketing webinar to a complementary SaaS"* |
+| `budget` | Planning | Channel allocation, forecasting, business cases | *"Split $40k/quarter across paid, content, and events"* |
+| `brief` | Creative briefs | Briefs for designers, agencies, freelancers | *"Write a brief for a designer doing our conference booth"* |
+| `crisis` | Issues response | Severity assessment, holding statements, escalation | *"Someone's angry at us on Twitter and it's spreading"* |
+| `podcast` | Podcasts | Guest pitching, show format and cadence, show notes, repurposing | *"Pitch me as a guest on marketing ops podcasts"* |
+| `pulse` | Weekly report | Wins, misses, anomalies, one recommended action | *"How did we do this week? [paste metrics]"* |
+| `trend` | Trend summary | Month/quarter rollup from your saved pulse history | *"What's actually moved over the last quarter?"* |
 
-You don't have to use the slash commands — describing the task works too. "Why isn't our pricing page ranking?" routes to SEO. "Someone's complaining about us on Twitter" routes to crisis.
+### How to invoke it
+
+**`/superagency` is the only slash command.** Claude.ai registers one command per skill, taken from the `name` field — the keywords above are routing hints the skill reads once it's running, not commands the menu knows about.
+
+Three things that all work:
+
+```
+/superagency seo — audit our pricing page
+audit our pricing page for SEO
+why isn't our pricing page ranking?
+```
+
+The last one is the point: you don't need a keyword at all. "Someone's complaining about us on Twitter" routes to crisis, "how do we stop churn" routes to lifecycle. The keyword is there for when you want to override Claude's guess.
 
 ---
 
@@ -97,7 +109,7 @@ The first time you ask for anything customer-facing, the skill will ask three qu
 
 It saves your answers to `references/brand.md` and uses them from then on. You only do this once.
 
-For weekly reporting, `/pulse` appends each week's summary to `references/pulse-log.md`, so after a month or so `/trend` can tell you what's actually moving rather than just what happened last week.
+For weekly reporting, the `pulse` workflow appends each week's summary to `references/pulse-log.md`, so after a month or so `trend` can tell you what's actually moving rather than just what happened last week.
 
 ---
 
@@ -138,7 +150,7 @@ To add a workflow:
 
 1. Write `references/<name>.md` — scope line, structure or checklist, then a "Rules" section covering that domain's failure mode.
 2. Add a row to the routing table in `SKILL.md`.
-3. Add the slash command to the command list.
+3. Add the keyword to the keyword list in `SKILL.md`, and a row to the table in this README.
 4. **Add the domain to the `description` field.** This is the step people forget, and skipping it means the workflow never triggers — Claude decides whether to use a skill based only on its description.
 5. Repackage and re-upload.
 
@@ -179,7 +191,7 @@ GitHub calls it a pull request; GitLab calls the same thing a merge request. Eit
    git checkout -b add-podcast-workflow
    ```
 
-3. **Make the change.** For a new workflow that's four edits: the new `references/<name>.md`, a routing row in `SKILL.md`, the slash command, and the `description` field. Add a row to the command table in this README too.
+3. **Make the change.** For a new workflow that's four edits: the new `references/<name>.md`, a routing row in `SKILL.md`, the keyword list, and the `description` field. Add a row to the keyword table in this README too.
 
 4. **Repackage** so `superagency.skill` matches the source:
 

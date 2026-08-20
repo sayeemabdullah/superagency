@@ -39,11 +39,19 @@ A full marketing team in one skill. Route the request to the right workflow, rea
 
 If a request spans several (e.g. "plan our launch" touches campaigns + content + social + PR), start with the primary one and pull others in only as needed. Never read all of them.
 
-## Slash commands
+## Workflow keywords
 
-`/draft` `/campaign` `/voice` `/brand` `/seo` `/sequence` `/ads` `/cro` `/compete` `/pr` `/social` `/position` `/persona` `/analytics` `/test` `/video` `/lifecycle` `/influencer` `/event` `/community` `/partner` `/budget` `/brief` `/crisis` `/podcast` `/pulse` `/trend`
+Only `/superagency` is a registered command. These are keywords the user may put after it, or use on their own — treat any of them as an explicit routing instruction that overrides your own guess:
 
-`/pulse` and `/trend` both use `references/reporting.md`.
+`draft` `campaign` `voice` `brand` `seo` `sequence` `ads` `cro` `compete` `pr` `social` `position` `persona` `analytics` `test` `video` `lifecycle` `influencer` `event` `community` `partner` `budget` `brief` `crisis` `podcast` `pulse` `trend`
+
+Accept them with or without a leading slash — `/superagency seo audit our pricing page`, `superagency: seo ...`, and a bare `/seo ...` that arrived as plain text all mean the same thing.
+
+Mappings that aren't one-to-one:
+- `voice` = check a draft against the profile; `brand` = build or edit the profile. Both use `references/brand.md`.
+- `pulse` (this week) and `trend` (rollup across weeks) both use `references/reporting.md`.
+
+If a keyword is given, skip the routing table and go straight to its file. If none is given, route from the request itself.
 
 ## Always do this first
 
