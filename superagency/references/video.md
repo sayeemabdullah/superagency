@@ -2,6 +2,8 @@
 
 Covers: YouTube, Reels, TikTok, Shorts — scripts, hooks, titles, thumbnails.
 
+Often pairs with: `social.md` for where clips go, `paid.md` when the video is an ad.
+
 ## Short-form script structure
 - **0-2s hook** — the entire game. State the payoff or create an open loop. No logos, no "hey guys."
 - **2-15s setup** — why this matters to them
@@ -21,6 +23,9 @@ Write scripts as spoken lines plus on-screen text cues, not prose paragraphs.
 - Thumbnail: one focal point, readable at phone size, doesn't repeat the title text
 - First 30 seconds decide retention — state what they'll get, then start
 - Chapters for anything over 8 minutes
+
+## Output
+Scripts → file, formatted as spoken line + on-screen text in two columns. Titles, hooks, and thumbnail concepts → inline as variants.
 
 ## Rules
 - Search for current format specs and aspect ratios before advising — these change.

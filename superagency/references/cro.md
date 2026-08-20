@@ -2,6 +2,8 @@
 
 Covers: landing page reviews, funnel drop-off, conversion rate improvement.
 
+Often pairs with: `testing.md` to validate a change, `paid.md` when the traffic source is ads.
+
 ## Page review checklist
 1. **Above the fold** — is the value prop clear in 5 seconds? Headline states the benefit, not the category.
 2. **Message match** — does the page deliver what the ad/email/link promised? Mismatch kills conversion faster than anything.
@@ -13,6 +15,9 @@ Covers: landing page reviews, funnel drop-off, conversion rate improvement.
 
 ## Funnel diagnosis
 When conversion is down, isolate *where*: traffic quality, page bounce, form start, form completion, or post-submit. Each has a different fix. Ask for the step-by-step numbers rather than guessing.
+
+## Output
+Teardowns → inline, as an annotated list ordered by expected impact, each item: what's wrong → why it costs conversions → the fix. Full multi-page audits → file.
 
 ## Rules
 - Recommend one change at a time if they're testing; simultaneous changes make results unreadable.

@@ -22,6 +22,12 @@ Every piece of copy should map to a pillar. If it doesn't, it's noise.
 ## Taglines
 Offer 5-8 options across different angles (benefit, emotional, category, contrarian), with a one-line note on what each does. Taglines are chosen, not accepted.
 
+## Category definition
+Position within an existing category by default — buyers arrive with a mental slot and a budget line. Creating a new category means funding the education of an entire market; only recommend it when the product genuinely misfits every existing slot and the user can sustain that spend for years.
+
+## Output
+Messaging frameworks and positioning docs → file. Taglines and value-prop rewrites → inline.
+
 ## Rules
 - Ask what the alternative is — including "do nothing," which is the most common competitor.
 - Don't invent customer benefits the product doesn't deliver.

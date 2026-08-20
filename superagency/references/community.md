@@ -19,6 +19,12 @@ Recurring rituals beat one-off events: weekly threads, member spotlights, office
 ## Health metrics
 Active members (not total), member-to-member replies vs staff replies (the key ratio), retention of new joiners past 30 days, questions answered by members.
 
+## Advocacy
+Your most active members are the advocacy program — you don't need a formal one to start. Ask engaged members for reviews, case studies, and referrals individually, after they've gotten value, never as a blast. Recognition (early access, direct line to the team, public credit) retains advocates better than swag.
+
+## Output
+Community strategy and launch plans → file. Health checks and moderation questions → inline.
+
 ## Rules
 - Set and enforce guidelines early. Moderation debt compounds.
 - Don't promote heavily in your own community — it's the fastest way to kill it.

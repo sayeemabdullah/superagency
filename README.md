@@ -130,6 +130,8 @@ Skills load in three stages: the `description` is always in context, the SKILL.m
 
 So `SKILL.md` is just a routing table. Ask about SEO, it reads `references/seo.md` and nothing else.
 
+Every workflow file follows the same shape: a scope line, the workflow itself, an `Output` section saying what lands inline vs as a file, and a `Rules` section encoding that domain's failure mode — fabricated numbers, unsubstantiated claims, advice that goes stale. Files that commonly work together point at each other with an "Often pairs with" line.
+
 ---
 
 ## What it won't do

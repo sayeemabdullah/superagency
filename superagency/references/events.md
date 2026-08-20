@@ -21,6 +21,12 @@ Registration-to-attendance runs low for free webinars — plan promo volume for 
 ## Measurement
 Registrations, attendance rate, engaged minutes, pipeline sourced, cost per opportunity. Attendance alone isn't a result.
 
+## Ask before planning
+Date (or date flexibility), budget, and the goal — pipeline, awareness, or community. A webinar built for pipeline looks nothing like one built for awareness.
+
+## Output
+Event plans and promo timelines → file. Follow-up email drafts → route through `email-sequences.md`.
+
 ## Rules
 - The follow-up is worth more than the event. Budget effort accordingly.
 - Repurpose every event into at least three other assets.

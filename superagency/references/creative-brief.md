@@ -13,6 +13,9 @@ Covers: briefs for designers, agencies, freelancers, video teams.
 8. **Approval process** — who signs off, how many rounds
 9. **Deadline** — with milestones, not just a final date
 
+## Output
+Briefs → file, one per project. They get forwarded to the creative verbatim, so write for them, not for the user.
+
 ## Rules
 - Brief the problem, not the solution. Prescribing execution wastes the creative's value.
 - Include what's *not* wanted — it saves a round.

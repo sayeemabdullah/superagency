@@ -2,6 +2,8 @@
 
 Covers: onboarding, nurture, re-engagement, win-back, launch sequences, abandoned cart.
 
+Often pairs with: `lifecycle.md` for what triggers each sequence, `content.md` for the copy itself.
+
 ## Sequence design
 For each sequence, define:
 - **Goal & exit condition** — what action ends the sequence (they convert, they reply, they unsubscribe)

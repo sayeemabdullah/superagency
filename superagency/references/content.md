@@ -18,6 +18,7 @@ Covers: blog posts, social captions, email copy, landing page copy, ad copy, cas
 | Blog post | 800-1500 words | Hook first sentence, subheads every 200-300 words, scannable. |
 | Landing page hero | 5-12 words headline | Benefit, not feature. |
 | Case study | 500-900 words | Problem → approach → result, with a real number in the result. |
+| Newsletter | 300-800 words | One theme per issue, consistent sections, 2-4 links max. |
 
 ## Rules
 - Lead with the benefit, not the feature.

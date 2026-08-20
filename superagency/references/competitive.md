@@ -21,6 +21,9 @@ Then across all of them:
 ## Battlecard format
 For sales use: their pitch → our counter → proof point. Keep each to one line. A battlecard nobody can read in 30 seconds doesn't get used.
 
+## Output
+Competitive briefs and battlecards → file (sales will reuse them). A quick "what is X doing" check → inline.
+
 ## Rules
 - Stay factual and fair. Don't write disparaging claims that can't be substantiated — it's a legal risk in comparative marketing.
 - Distinguish what's verified from what's inferred.

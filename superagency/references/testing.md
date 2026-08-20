@@ -2,6 +2,8 @@
 
 Covers: test design, sample size, reading results.
 
+Often pairs with: `cro.md` — it supplies what to test, this file supplies how.
+
 ## Designing a test
 1. **Hypothesis** — "Changing X to Y will increase Z because [reason]." No reason = no learning, regardless of outcome.
 2. **One variable** — headline OR button OR image. Multivariate needs traffic most teams don't have.
@@ -17,6 +19,9 @@ Covers: test design, sample size, reading results.
 
 ## What to test, in order of impact
 Offer > headline/value prop > page structure > form length > CTA copy > design details. Most teams test the last one first.
+
+## Output
+Test plans → inline (hypothesis, variable, metric, duration, stop condition — five lines). A full experiment log or program doc → file.
 
 ## Rules
 - Don't declare a winner on underpowered data. Say the test is inconclusive.
