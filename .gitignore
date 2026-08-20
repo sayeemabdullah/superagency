@@ -3,3 +3,7 @@ __pycache__/
 *.pyc
 .env
 node_modules/
+
+# build artifact — CI builds it on every PR and attaches it to releases
+# see .github/workflows/release.yml
+superagency.skill

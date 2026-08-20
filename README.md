@@ -68,9 +68,11 @@ Go to **Settings → Capabilities** and turn on **Code execution and file creati
 
 **Option A — download the packaged file**
 
-Download [`superagency.skill`](../../raw/main/superagency.skill) from this repo, or grab a pinned version from [Releases](../../releases/latest).
+Download `superagency.skill` from [Releases](../../releases/latest).
 
-You never build it yourself. CI rebuilds the archive from `superagency/` on every PR and commits it, so the copy on `main` always matches the source.
+The archive isn't committed to the repo — it's a build artifact. CI builds it on every PR and attaches it to each tagged release, so a release download always matches the source it was built from.
+
+Note that `main` can be ahead of the latest release. If you want the very newest source, build it yourself with Option B.
 
 **Option B — build it from a clone**
 
@@ -111,9 +113,9 @@ Claude.ai has **no in-place update**. Uploading a revised file does not replace 
 
 ### Get the new file
 
-Download it from [Releases](../../releases/latest), or `git pull` if you have a clone.
+Download the newest file from [Releases](../../releases/latest). It's already built — CI produced it when the version was tagged.
 
-Either way it's already built. Nothing to package, nothing to run — CI rebuilt the archive when the change merged, and attached it to the release when the version was tagged.
+From a clone, `git pull && ./scripts/build.sh` gives you the same thing from current `main`, which may be ahead of the latest release.
 
 ### Replace it in Claude.ai
 
@@ -264,19 +266,17 @@ Deliberately not in CI — it costs money and isn't deterministic. Run it after 
 
 **You never build, commit, or push `superagency.skill`.** CI owns that file.
 
-Edit `superagency/`, open a PR, and that's the whole job. CI rebuilds the archive, commits it to your branch, and it reaches `main` with your merge. Releases are built and published by CI too. If you find yourself running `zip`, something has gone wrong — `make hooks` installs a guard that stops the archive being staged by hand.
+Edit `superagency/`, open a PR, and that's the whole job. The archive is gitignored: CI builds and validates it on every PR, and `release.yml` builds and attaches it when you tag a version. If you find yourself running `zip` by hand, use `./scripts/build.sh` instead — a bare `zip` won't reproduce the same bytes.
 
 ```bash
-make hooks    # once — installs a pre-commit guard against hand-built archives
 make check    # structural validation, same as CI
 make test     # unit tests for the bundled tools
-make skill    # rebuild locally to inspect; do not commit the result
+make skill    # build the archive locally (gitignored)
 ```
 
 | When | What runs |
 |---|---|
-| Every PR | `validate.yml` — validates, runs the tool tests, rebuilds, and commits the archive to the PR branch if it's stale |
-| Push to `main` | Same workflow in verify-only mode; fails if `main`'s archive drifts from source |
+| Every PR and push to `main` | `validate.yml` — validates, runs the tool tests, builds the archive, and uploads it as a 14-day artifact |
 | Push a `v*` tag | `release.yml` — validates, builds, and attaches `superagency.skill` to a GitHub Release |
 
 ### Cutting a release
@@ -342,7 +342,7 @@ GitHub calls it a pull request; GitLab calls the same thing a merge request. Eit
    make check
    ```
 
-   **Leave `superagency.skill` alone** — don't build it, don't stage it, don't push it. CI rebuilds it and commits it to your branch for you. Run `make hooks` once and git will stop you staging it by accident.
+   **Don't commit `superagency.skill`** — it's gitignored. CI builds and validates it for you; run `make skill` if you want to inspect the archive locally.
 
 5. **Commit and push:**
 
