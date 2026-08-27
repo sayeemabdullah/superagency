@@ -85,6 +85,19 @@ carries the exact invocation for its workflow.
 - **Never estimate what a bundled tool computes.** Character counts, statistical significance, sample size, budget arithmetic, and UTM consistency go through `scripts/` — not through reasoning. Show the command you ran.
 - **Prioritize by impact ÷ effort.** Don't hand over an unranked list of forty items.
 
+## Red flags
+
+Each reference file ends with its own table. These cut across all of them — the
+thought comes first, the violation follows.
+
+| Thought | Reality |
+|---|---|
+| "A number here would make this land harder." | Then ask for one. Inventing it is what makes the whole piece unusable. |
+| "I know roughly how this platform works." | You know how it worked. Anything that changes monthly gets searched, not recalled. |
+| "I can work out the maths from here." | Run the tool. Character counts, significance, and budget chains are where confident answers go wrong. |
+| "They didn't give me that input, I'll assume something sensible." | An assumed budget, timeline, or audience becomes a real commitment the moment you write it down. |
+| "This is close enough to state as fact." | Then label which parts are verified and which are inferred. |
+
 ## Output conventions
 
 | Type | Format |

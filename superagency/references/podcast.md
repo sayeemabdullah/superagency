@@ -22,6 +22,13 @@ Decide the format before the first episode — interview, solo, or narrative —
 ## Repurposing
 One episode should produce: show notes, 2-3 short clips, a quote graphic, and a newsletter section. If it only produces the episode, the economics rarely work.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "I'll estimate their download numbers to size the opportunity." | Ask the host. An invented audience figure makes the whole pitch rationale fictional. |
+| "Lead the pitch with what our company does." | Hosts book angles, not companies. Name a specific episode and the angle you would bring. |
+| "The clip will make a great ad." | Get explicit permission before running guest audio as paid media. |
+
 ## Rules
 - Never fabricate download numbers, audience demographics, or guest availability.
 - Get explicit permission before using guest audio in paid ads.

@@ -191,7 +191,7 @@ Skills load in three stages: the `description` is always in context, the SKILL.m
 
 So `SKILL.md` is just a routing table. Ask about SEO, it reads `references/seo.md` and nothing else.
 
-Every workflow file follows the same shape: a scope line, the workflow itself, an `Output` section saying what lands inline vs as a file, and a `Rules` section encoding that domain's failure mode — fabricated numbers, unsubstantiated claims, advice that goes stale. Files that commonly work together point at each other with an "Often pairs with" line.
+Every workflow file follows the same shape: a scope line, the workflow itself, an `Output` section saying what lands inline vs as a file, a `Red flags` table, and a `Rules` section encoding that domain's failure mode — fabricated numbers, unsubstantiated claims, advice that goes stale. Files that commonly work together point at each other with an "Often pairs with" line.
 
 ---
 
@@ -211,7 +211,7 @@ These constraints are deliberate, not oversights:
 
 To add a workflow:
 
-1. Write `references/<name>.md` — scope line, structure or checklist, then a "Rules" section covering that domain's failure mode.
+1. Write `references/<name>.md` — scope line, structure or checklist, then a "Red flags" table and a "Rules" section covering that domain's failure mode.
 2. Add a row to the routing table in `SKILL.md`.
 3. Add the keyword to the keyword list in `SKILL.md`, and a row to the table in this README.
 4. **Add the domain to the `description` field.** This is the step people forget, and skipping it means the workflow never triggers — Claude decides whether to use a skill based only on its description.
@@ -260,6 +260,20 @@ Deliberately not in CI — it costs money and isn't deterministic. Run it after 
 
 ---
 
+## Red flags: naming the excuse, not the rule
+
+Every workflow file carries a table of the thoughts that immediately precede that domain's failure:
+
+| Thought | Reality |
+|---|---|
+| "p = 0.06 is basically significant." | It is not. Run `scripts/ab.py result` and report the interval, not a verdict you rounded toward. |
+| "The budget is short, I'll spread the gap across channels." | Run `scripts/budget.py backsolve` and state the shortfall plainly. A quiet gap becomes someone's missed target. |
+| "I'll write the quote in the CEO's voice." | Label it a draft for a named person to approve. Never present an invented quote as said. |
+
+A rule tells you what to do. A red flag catches you talking yourself out of it — which is where the violation actually happens. `SKILL.md` carries a router-level table for the rationalizations that cut across every workflow, and the validator refuses a workflow file without one.
+
+---
+
 ## Building and releasing
 
 **You never build, commit, or push `superagency.skill`.** CI owns that file.
@@ -296,6 +310,8 @@ git tag v1.1 && git push origin v1.1
 A consequence worth knowing: if you run `make skill` and your source matches `main`, the rebuild is byte-identical and leaves your tree clean. A diff means your source genuinely changed — and CI will commit that rebuild for you.
 
 `scripts/validate.py` enforces the invariants that break the skill silently: frontmatter is exactly `name` + `description` on one line, every routing row resolves to a real file, every workflow file has `Rules` and `Output`, cross-references resolve, the keyword list matches the README table, every workflow appears in the `description`, and both stateful files ship empty.
+
+Since a rule that stops firing looks identical to one that works, it also requires a `Red flags` table in every workflow file, with at least two rows whose left column is a quoted thought.
 
 It also covers the tooling: every referenced script exists, every shipped script is referenced by something, **every tool's `--help` actually runs** (a stray `%` in an argparse help string is enough to break it, and did), every example carries its illustrative banner, and every routed workflow has an eval case.
 

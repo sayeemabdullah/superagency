@@ -23,6 +23,13 @@ For each sequence, define:
 ## Per-email requirements
 Subject line (2-3 variants), preview text, body, one primary CTA. Preview text is wasted by most senders — use it as a second subject line, not a repeat.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "Two CTAs is fine, both are useful to them." | Two different asks halve both. Two links to the same ask are fine. |
+| "Open with the strongest urgency to get attention." | Then you have nowhere to escalate. Sequences build. |
+| "They will convert or they won't." | Write the exit condition explicitly or people loop in the sequence forever. |
+
 ## Rules
 - One CTA per email. Two links to the same CTA is fine; two different asks is not.
 - Escalate urgency across the sequence, don't open at maximum.

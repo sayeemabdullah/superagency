@@ -22,6 +22,13 @@ Prioritize by impact ÷ effort. Don't hand over an unranked list of 40 items.
 ## Output
 Audits → file, quick wins first. Single-page or single-question checks → inline.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "They want a timeline, three months is a fair estimate." | Rankings are not guaranteeable on any timeline. Say what you will do, not when it will land. |
+| "I know how ranking factors work." | You know how they worked. Search before advising on anything that depends on how search behaves today. |
+| "Here are the forty things to fix." | An unranked list of forty is a list nobody starts. Split quick wins from strategic and rank by impact ÷ effort. |
+
 ## Rules
 - Never promise rankings or timelines. SEO outcomes aren't guaranteeable.
 - Write for the reader first; keyword-stuffed copy loses on both fronts now.

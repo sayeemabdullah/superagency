@@ -40,6 +40,13 @@ Platforms: `google`, `meta`, `linkedin`, `x`, `tiktok`. Hard limits are rejected
 on submit; soft limits are truncation thresholds and are a judgement call. The
 script prints when its specs were last verified — if that's stale, search.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "That headline looks about thirty characters." | Run `scripts/adlint.py`. Counting characters by eye is exactly the thing you get wrong while feeling certain. |
+| "I remember the current ad specs." | Specs change quarterly. Verify before writing copy that has to fit them. |
+| "They asked what CPA to expect, I'll give a range." | You have no data for their account. A quoted range becomes a target you invented. |
+
 ## Rules
 - Never promise specific CPA/ROAS figures.
 - Flag any claim in ad copy that would need substantiation (superlatives, comparative claims, health/financial results).

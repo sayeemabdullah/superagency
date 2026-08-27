@@ -23,6 +23,13 @@ An opinion piece under an exec's name for a trade publication. Pitch the *argume
 ## Output
 Releases and bylines → file. Pitches → inline (they're emails).
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "I'll write the quote in the CEO's voice." | Label it a draft for a named person to approve. Never present an invented quote as said. |
+| "This feature update is newsworthy." | Usually it is not. Funding, launches, major hires, data, partnerships are. Say so plainly. |
+| "The release works as the pitch." | It does not. The pitch is three sentences about why their readers care. |
+
 ## Rules
 - Is it actually news? Funding, launches, major hires, data, partnerships are. Feature updates usually aren't.
 - Never fabricate quotes. Draft a quote for a real named person to approve, and label it clearly as a draft for approval.

@@ -25,6 +25,13 @@ Your most active members are the advocacy program — you don't need a formal on
 ## Output
 Community strategy and launch plans → file. Health checks and moderation questions → inline.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "Launch it and seed members once it is live." | An empty channel is negative signal. Seed twenty to fifty engaged people first. |
+| "A community will help our marketing." | Communities that exist for marketing die. Members must get value from each other. |
+| "Nobody is posting, we'll leave it to grow." | Silence is fatal early. Unstaffed is worse than not having one. |
+
 ## Rules
 - Set and enforce guidelines early. Moderation debt compounds.
 - Don't promote heavily in your own community — it's the fastest way to kill it.

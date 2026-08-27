@@ -23,6 +23,13 @@ Define up front: who creates what, who promotes when, who owns the leads, and ho
 ## Output
 Partnership proposals and program terms → file. Partner evaluation and outreach drafts → inline.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "We agreed on the call, that is enough." | Get promotion dates in writing. Verbal co-marketing commitments quietly evaporate. |
+| "The programme drove good numbers overall." | Measure per partner. One usually drives most of the result and the average hides it. |
+| "They can describe our product however they like." | Approve the claims. You own what a partner says about you. |
+
 ## Rules
 - Get commitments in writing, including promotion dates.
 - Measure per partner, not in aggregate; one partner usually drives most of the result.

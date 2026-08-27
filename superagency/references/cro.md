@@ -21,6 +21,13 @@ Teardowns → inline, as an annotated list ordered by expected impact, each item
 
 For shape, see `references/examples/landing-page-teardown.md` — severity-labelled, ordered by impact, and it asks for funnel numbers before trusting its own diagnosis.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "There are seven problems, I'll fix them all." | If they are testing, simultaneous changes make the result unreadable. One at a time. |
+| "Conversion is 1.2%, that is below benchmark." | Benchmarks vary wildly by industry and most quoted ones have no source. Compare against their own history. |
+| "The page is the problem." | It may be traffic quality. Get the step-by-step funnel numbers before diagnosing. |
+
 ## Rules
 - Recommend one change at a time if they're testing; simultaneous changes make results unreadable.
 - Prioritize by expected impact — headline and offer beat design tweaks nearly every time.

@@ -34,6 +34,13 @@ python3 scripts/pulse.py trend
 `trend` parses every entry and reports direction across the whole range. If it
 finds only one data point for a metric, say so rather than implying a trend.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "Impressions are up forty percent, lead with that." | Conversions are flat. A metric that looks good and moves nothing is the one to call out, not celebrate. |
+| "Traffic rose after the campaign, so the campaign worked." | A press mention landed the same week. Name both rather than assigning the cause you prefer. |
+| "Twelve hundred clicks is the number." | Against what? A number without context or comparison is not a report. |
+
 ## Rules
 - Don't report metrics without context. "1,200 clicks" means nothing; "1,200 clicks, up 40% on a flat budget" means something.
 - Distinguish correlation from cause. If traffic rose the same week as a campaign *and* a press mention, say both.

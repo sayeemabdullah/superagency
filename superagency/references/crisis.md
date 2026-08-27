@@ -31,5 +31,12 @@ No speculation on cause, no blame, and a timestamp you can actually keep — mis
 ## Output
 Holding statements and social replies → inline (speed matters). Full comms plans and postmortem-facing statements → file.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "I'll get an apology out quickly to stop the spread." | Accuracy first. "We are investigating and will update by [time]" is a complete first response. |
+| "This one is spreading, we should respond everywhere." | Match the response to the severity. Responding loudly to a small complaint amplifies it. |
+| "Legal will slow it down and we need to move." | Anything touching liability, data, or safety goes to counsel. Say that instead of drafting around it. |
+
 ## Rules
 This skill drafts holding statements and comms plans. Anything touching legal liability, data breaches, safety, or regulatory exposure must go to counsel before publication — say so explicitly rather than drafting around it.

@@ -46,6 +46,12 @@ It reports any banned word or phrase from this profile that appears in the
 draft. A clean run is not a pass — tone and claims still need the human read
 below.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "The profile is empty but I can tell how they write." | You are guessing from one sample. Ask, or build it from examples they confirm are on-brand. |
+| "Overall this reads off-brand." | That is unactionable. Quote the specific lines and give before/after. |
+
 ## Persisting the profile
 This file resets to a blank template whenever the skill is re-uploaded. After writing a profile or changing one, print the complete file contents and tell the user to paste them into their local `references/brand.md` and repackage. Say this every time you write — it is not obvious, and losing the profile is silent.
 

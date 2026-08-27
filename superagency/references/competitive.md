@@ -26,6 +26,13 @@ Competitive briefs and battlecards → file (sales will reuse them). A quick "wh
 
 For shape, see `references/examples/battlecard.md` — one line per row, an honest "where they're strong," and an explicit do-not-say list.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "Their site strongly implies it, close enough to state." | Implied is not verified. Say which is which, or you are writing a claim you cannot defend. |
+| "I know what this competitor does." | Positioning and pricing change constantly. Fetch their actual pages. |
+| "Their onboarding is probably slow." | Unsubstantiated disparagement in comparative marketing is a legal exposure, not a strong angle. |
+
 ## Rules
 - Stay factual and fair. Don't write disparaging claims that can't be substantiated — it's a legal risk in comparative marketing.
 - Distinguish what's verified from what's inferred.

@@ -22,6 +22,13 @@ Covers: ideal customer profile, buyer personas, jobs-to-be-done.
 ## Output
 Persona and ICP docs → file, one page per persona, labeled evidence-based or hypothesis at the top. Quick "who is this for" checks → inline.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "I understand this market well enough to write the persona." | Then it is a hypothesis. Label it one, and say what would validate it. |
+| "Five personas covers the segments." | Two or three maximum. More than that and nobody uses any of them. |
+| "Their age and interests give useful colour." | If it does not change the messaging, it is filler that makes the doc look thorough. |
+
 ## Rules
 - Build from evidence — sales calls, support tickets, interviews, analytics. Ask what the user has before inventing.
 - If there's no data, label it explicitly as a hypothesis to validate, not a finding.
