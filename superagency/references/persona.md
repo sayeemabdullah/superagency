@@ -26,7 +26,7 @@ Persona and ICP docs → file, one page per persona, labeled evidence-based or h
 | Thought | Reality |
 |---|---|
 | "I understand this market well enough to write the persona." | Then it is a hypothesis. Label it one, and say what would validate it. |
-| "Five personas covers the segments." | Two or three maximum. More than that and nobody uses any of them. |
+| "Role and seniority are enough to define the persona." | What they're measured on drives every buying decision. Without it you have a job title, not a persona. |
 | "Their age and interests give useful colour." | If it does not change the messaging, it is filler that makes the doc look thorough. |
 
 ## Rules
