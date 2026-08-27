@@ -48,7 +48,7 @@ channels to make the plan look fundable.
 |---|---|
 | "The budget is short, I'll spread the gap across channels." | Run `scripts/budget.py backsolve` and state the shortfall plainly. A quiet gap becomes someone's missed target. |
 | "Blended CAC is the number to plan against." | It hides that SEO pays back over months and paid pays back immediately. Separate them. |
-| "Media spend is the budget." | Production costs are real. So is the headcount that has to make the thing. |
+| "They want to move budget mid-quarter, so I'll rebalance the plan." | Only media is flexible. Headcount, tools, and retainers are committed — say what can actually move, not what looks balanced. |
 
 ## Rules
 - Never present a forecast as a commitment. Label assumptions.

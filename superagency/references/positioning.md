@@ -33,6 +33,7 @@ Messaging frameworks and positioning docs → file. Taglines and value-prop rewr
 |---|---|
 | "The benefit is obvious from the product." | Ask what the alternative is, including doing nothing. Positioning is relative or it is description. |
 | "This value prop sounds strong." | Put a competitor's logo on it. If it still reads true, it is not positioning. |
+| "A new category would set them apart." | It means funding an entire market's education for years. Position inside an existing category unless the product genuinely misfits every slot. |
 
 ## Rules
 - Ask what the alternative is — including "do nothing," which is the most common competitor.

@@ -51,6 +51,7 @@ below.
 |---|---|
 | "The profile is empty but I can tell how they write." | You are guessing from one sample. Ask, or build it from examples they confirm are on-brand. |
 | "Overall this reads off-brand." | That is unactionable. Quote the specific lines and give before/after. |
+| "The banned-word scan came back clean, so the copy passes." | The scan only matches listed words. Tone, unsubstantiated claims, and off-message framing still need the read below. |
 
 ## Persisting the profile
 This file resets to a blank template whenever the skill is re-uploaded. After writing a profile or changing one, print the complete file contents and tell the user to paste them into their local `references/brand.md` and repackage. Say this every time you write — it is not obvious, and losing the profile is silent.

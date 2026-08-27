@@ -31,7 +31,7 @@ Event plans and promo timelines → file. Follow-up email drafts → route throu
 | Thought | Reality |
 |---|---|
 | "Four hundred registrations, strong result." | Registration is not attendance and attendance is not pipeline. Say which number you mean. |
-| "The event is done, on to the next one." | The follow-up is worth more than the event. Budget effort accordingly. |
+| "The event is done, on to the next one." | The follow-up outperforms the event, and one event should become at least three other assets. Plan the effort past the live date, not up to it. |
 | "Booth traffic will justify the cost." | It rarely does. Book meetings before arriving. |
 
 ## Rules

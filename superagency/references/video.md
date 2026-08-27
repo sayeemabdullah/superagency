@@ -32,7 +32,7 @@ Scripts → file, formatted as spoken line + on-screen text in two columns. Titl
 |---|---|
 | "Open with the logo and a quick intro." | The first two seconds are the entire game. No logos, no hey guys. |
 | "This needs a few b-roll shots to work." | Do not write scripts requiring resources they have not said they have. |
-| "Higher production quality will lift retention." | A well-hooked phone video beats a polished one that opens slowly. |
+| "Higher production quality will lift retention." | Retention is decided in the first two seconds, not the color grade. Fix the hook before anyone picks up a camera. |
 
 ## Rules
 - Search for current format specs and aspect ratios before advising — these change.
