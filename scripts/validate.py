@@ -92,6 +92,8 @@ def main():
         text = open(os.path.join(REF_DIR, r)).read()
         if not text.lstrip().startswith("# "):
             fail(f"{r}: no H1 heading")
+        if r == "brand.md" and "\n## Red flags" not in text:
+            fail("brand.md: missing '## Red flags' section")
         if r in STATEFUL:
             continue
         if r not in routed:
@@ -100,6 +102,20 @@ def main():
             fail(f"{r}: missing '## Rules' section")
         if "\n## Output" not in text:
             fail(f"{r}: missing '## Output' section")
+        if "\n## Red flags" not in text:
+            fail(f"{r}: missing '## Red flags' section — naming the rationalization "
+                 "is what catches the violation, not restating the rule")
+        else:
+            block = text.split("\n## Red flags", 1)[1].split("\n## ", 1)[0]
+            rows = [l for l in block.splitlines()
+                    if l.startswith("|") and not l.startswith("|---")
+                    and "Thought" not in l]
+            if len(rows) < 2:
+                fail(f"{r}: '## Red flags' has {len(rows)} row(s); needs at least 2")
+            for row in rows:
+                if '"' not in row.split("|")[1]:
+                    fail(f"{r}: a Red flags row has no quoted thought — the left "
+                         "column must be the rationalization, verbatim")
 
     # Cross-references between reference files must resolve.
     examples = sorted(os.listdir(EXAMPLE_DIR)) if os.path.isdir(EXAMPLE_DIR) else []

@@ -27,6 +27,13 @@ Write scripts as spoken lines plus on-screen text cues, not prose paragraphs.
 ## Output
 Scripts → file, formatted as spoken line + on-screen text in two columns. Titles, hooks, and thumbnail concepts → inline as variants.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "Open with the logo and a quick intro." | The first two seconds are the entire game. No logos, no hey guys. |
+| "This needs a few b-roll shots to work." | Do not write scripts requiring resources they have not said they have. |
+| "Higher production quality will lift retention." | A well-hooked phone video beats a polished one that opens slowly. |
+
 ## Rules
 - Search for current format specs and aspect ratios before advising — these change.
 - Retention beats production value. A well-hooked phone video outperforms a polished one that opens slowly.

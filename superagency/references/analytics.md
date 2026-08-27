@@ -46,6 +46,13 @@ python3 scripts/utm.py check urls.txt
 only by case or separator become separate rows in every report. It reports those
 as drift, grouped by what they normalize to.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "Google and google will group together fine." | They will not. Run `scripts/utm.py check` — casing drift is the most common way reporting breaks. |
+| "Let's track everything and decide later." | Track what maps to a decision. Everything else is noise you will maintain forever. |
+| "Attribution says paid drove it." | Under which model? Two people arguing about channel performance are usually reading different ones. |
+
 ## Rules
 - Distinguish measurable from attributable. Brand, word of mouth, and dark social drive conversions that never show in the data.
 - Flag when tracking is set up in a way that will produce misleading numbers.

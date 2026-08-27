@@ -43,6 +43,13 @@ When the budget falls short, `backsolve` reports the shortfall and what the
 budget actually buys. Report that plainly — do not spread the gap across
 channels to make the plan look fundable.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "The budget is short, I'll spread the gap across channels." | Run `scripts/budget.py backsolve` and state the shortfall plainly. A quiet gap becomes someone's missed target. |
+| "Blended CAC is the number to plan against." | It hides that SEO pays back over months and paid pays back immediately. Separate them. |
+| "Media spend is the budget." | Production costs are real. So is the headcount that has to make the thing. |
+
 ## Rules
 - Never present a forecast as a commitment. Label assumptions.
 - Account for lag — SEO and content pay back over months; paid pays back immediately. A blended average hides this.

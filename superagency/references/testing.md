@@ -38,6 +38,13 @@ python3 scripts/ab.py result --a 40000 1200 --b 40100 1310
 first means the test could never have detected the effect and must not be
 reported as a loss. Quote the confidence interval, not just the p-value.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "p = 0.06 is basically significant." | It is not. Run `scripts/ab.py result` and report the interval, not a verdict you rounded toward. |
+| "It has been running a week with no winner, call it flat." | Check the power first. Underpowered is not the same as no effect, and must never be reported as a loss. |
+| "We can test the headline and the button together." | Then you will not know which moved it. One variable unless you have the traffic for more. |
+
 ## Rules
 - Don't declare a winner on underpowered data. Say the test is inconclusive.
 - Never run overlapping tests on the same funnel without accounting for interaction.

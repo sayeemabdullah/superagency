@@ -28,6 +28,12 @@ Position within an existing category by default — buyers arrive with a mental 
 ## Output
 Messaging frameworks and positioning docs → file. Taglines and value-prop rewrites → inline.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "The benefit is obvious from the product." | Ask what the alternative is, including doing nothing. Positioning is relative or it is description. |
+| "This value prop sounds strong." | Put a competitor's logo on it. If it still reads true, it is not positioning. |
+
 ## Rules
 - Ask what the alternative is — including "do nothing," which is the most common competitor.
 - Don't invent customer benefits the product doesn't deliver.

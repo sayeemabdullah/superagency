@@ -28,6 +28,13 @@ Table: date | platform | pillar | hook | asset needed | status
 ## Output
 Strategy and calendars → file. Individual post ideas → inline.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "LinkedIn currently favours this format." | Platform behaviour changes monthly. Search before advising on algorithm or format specifics. |
+| "They should be on all six platforms." | Pick one or two where the audience is and do those properly. Spread thin is the default failure. |
+| "We need fresh ideas every week." | One good piece becomes five posts. Repurposing is the plan, not a shortcut. |
+
 ## Rules
 - Repurpose deliberately — one blog post becomes five social posts, not five original ideas.
 - Verify current platform behavior with a search before advising on algorithm or format specifics.

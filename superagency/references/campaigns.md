@@ -26,6 +26,13 @@ Add a phased structure: pre-launch (tease, waitlist), launch day (announcement a
 ## Ask before planning
 Timeline, budget, and whether there's a hard date. These three change the plan more than anything else.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "No budget was given, I'll assume something reasonable." | Ask, or mark it a placeholder. An assumed budget becomes a real commitment the moment it is written down. |
+| "This channel is obviously right for them." | Write the rationale. If you cannot, the channel gets cut, not funded. |
+| "The launch date is the plan." | Post-launch is where most launches under-invest. Phase it or the proof never ships. |
+
 ## Rules
 - Never invent a budget, timeline, or headcount that wasn't given. Ask, or mark it clearly as a placeholder the user must fill.
 - Don't forecast results for a channel mix with no historical data behind it. Label projections as assumptions to validate, not expectations.

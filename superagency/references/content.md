@@ -32,6 +32,13 @@ constructions, and the filler words this file says to cut. Channels:
 `linkedin`, `x`, `instagram`, `email-subject`, `email-body`, `blog`,
 `case-study` — length is checked against the norms table above.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "A statistic here would make this land harder." | Then ask for one. An invented number is the single fastest way to make the whole piece unusable. |
+| "Powerful and innovative describes it fine." | Delete both words and reread. If the sentence is unchanged, they were never doing work. |
+| "They want three points made, I'll fit them in one post." | That is three pieces. One idea per piece, or all three land weakly. |
+
 ## Rules
 - Lead with the benefit, not the feature.
 - Cut adjectives that survive deletion. "Powerful, innovative solution" says nothing.

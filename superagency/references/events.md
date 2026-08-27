@@ -27,6 +27,13 @@ Date (or date flexibility), budget, and the goal — pipeline, awareness, or com
 ## Output
 Event plans and promo timelines → file. Follow-up email drafts → route through `email-sequences.md`.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "Four hundred registrations, strong result." | Registration is not attendance and attendance is not pipeline. Say which number you mean. |
+| "The event is done, on to the next one." | The follow-up is worth more than the event. Budget effort accordingly. |
+| "Booth traffic will justify the cost." | It rarely does. Book meetings before arriving. |
+
 ## Rules
 - The follow-up is worth more than the event. Budget effort accordingly.
 - Repurpose every event into at least three other assets.

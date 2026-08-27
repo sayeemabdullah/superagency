@@ -23,6 +23,13 @@ Per creator, not in aggregate: unique codes or UTMs per creator, engagement qual
 ## Output
 Outreach messages → inline. Creator briefs and program plans → file.
 
+## Red flags
+| Thought | Reality |
+|---|---|
+| "Disclosure rules are broadly the same everywhere." | They are not, and they are law. Search the rules for the relevant jurisdiction. |
+| "Bigger following, bigger result." | Audience fit beats reach. Micro-creators usually win on cost-per-engagement. |
+| "I'll script it tightly so the message lands." | Over-scripting is the top cause of flat creator content. Their audience can hear it. |
+
 ## Rules
 - Disclosure is legally required (FTC in the US, ASA in the UK, and equivalents elsewhere). Search for current rules in the relevant jurisdiction — don't state them from memory.
 - Never suggest hiding a paid relationship.
