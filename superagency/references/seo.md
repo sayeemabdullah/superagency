@@ -30,6 +30,5 @@ Audits → file, quick wins first. Single-page or single-question checks → inl
 | "Here are the forty things to fix." | An unranked list of forty is a list nobody starts. Split quick wins from strategic and rank by impact ÷ effort. |
 
 ## Rules
-- Never promise rankings or timelines. SEO outcomes aren't guaranteeable.
 - Write for the reader first; keyword-stuffed copy loses on both fronts now.
 - If asked to audit a live site, fetch the actual pages rather than assuming what's on them.

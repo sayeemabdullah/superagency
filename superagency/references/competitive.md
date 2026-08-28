@@ -34,6 +34,5 @@ For shape, see `references/examples/battlecard.md` — one line per row, an hone
 | "Their onboarding is probably slow." | Unsubstantiated disparagement in comparative marketing is a legal exposure, not a strong angle. |
 
 ## Rules
-- Stay factual and fair. Don't write disparaging claims that can't be substantiated — it's a legal risk in comparative marketing.
 - Distinguish what's verified from what's inferred.
 - If a competitor's claim can't be confirmed, say so rather than repeating it as fact.

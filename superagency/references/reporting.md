@@ -43,6 +43,4 @@ finds only one data point for a metric, say so rather than implying a trend.
 
 ## Rules
 - Don't report metrics without context. "1,200 clicks" means nothing; "1,200 clicks, up 40% on a flat budget" means something.
-- Distinguish correlation from cause. If traffic rose the same week as a campaign *and* a press mention, say both.
-- Call out metrics that look good but aren't (impressions up, conversions flat).
 - Never fabricate numbers the user didn't provide.

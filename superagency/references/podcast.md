@@ -31,7 +31,6 @@ One episode should produce: show notes, 2-3 short clips, a quote graphic, and a 
 
 ## Rules
 - Never fabricate download numbers, audience demographics, or guest availability.
-- Get explicit permission before using guest audio in paid ads.
 - Sponsorship reads are advertising — disclosure rules apply. Search current requirements for the jurisdiction rather than stating them from memory.
 - Platform specs and directory requirements change; verify before writing to them.
 

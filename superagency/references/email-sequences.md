@@ -32,8 +32,6 @@ Subject line (2-3 variants), preview text, body, one primary CTA. Preview text i
 
 ## Rules
 - One CTA per email. Two links to the same CTA is fine; two different asks is not.
-- Escalate urgency across the sequence, don't open at maximum.
-- Include the exit condition explicitly so people don't get stuck in loops.
 - Suggest one A/B test per sequence, usually the first subject line.
 
 ## Output
