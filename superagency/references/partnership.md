@@ -33,4 +33,3 @@ Partnership proposals and program terms → file. Partner evaluation and outreac
 ## Rules
 - Get commitments in writing, including promotion dates.
 - Measure per partner, not in aggregate; one partner usually drives most of the result.
-- Don't let a partner make claims about your product you haven't approved.

@@ -34,5 +34,4 @@ Lifecycle strategy and stage maps → file. Churn diagnosis and quick fixes → 
 
 ## Rules
 - Segment by behavior, not tenure. A power user at month 1 needs different messaging than a dormant user at month 12.
-- Don't message every user the same thing — that's what makes lifecycle email feel like spam.
 - Expansion asks should follow evidence of value, never precede it.

@@ -31,7 +31,6 @@ Releases and bylines → file. Pitches → inline (they're emails).
 | "The release works as the pitch." | It does not. The pitch is three sentences about why their readers care. |
 
 ## Rules
-- Is it actually news? Funding, launches, major hires, data, partnerships are. Feature updates usually aren't.
 - Never fabricate quotes. Draft a quote for a real named person to approve, and label it clearly as a draft for approval.
 - Never attribute invented statements to real people outside the user's own company.
 - Flag anything that needs legal or exec sign-off before it goes out.

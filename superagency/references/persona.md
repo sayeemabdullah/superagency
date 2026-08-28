@@ -31,6 +31,4 @@ Persona and ICP docs → file, one page per persona, labeled evidence-based or h
 
 ## Rules
 - Build from evidence — sales calls, support tickets, interviews, analytics. Ask what the user has before inventing.
-- If there's no data, label it explicitly as a hypothesis to validate, not a finding.
 - Two or three personas maximum. More than that and nobody uses them.
-- Skip demographics that don't change the messaging. Age and hobbies usually don't.

@@ -36,5 +36,4 @@ Scripts → file, formatted as spoken line + on-screen text in two columns. Titl
 
 ## Rules
 - Search for current format specs and aspect ratios before advising — these change.
-- Retention beats production value. A well-hooked phone video outperforms a polished one that opens slowly.
 - Don't write scripts that require b-roll or resources the user hasn't said they have.

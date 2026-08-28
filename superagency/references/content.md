@@ -41,8 +41,6 @@ constructions, and the filler words this file says to cut. Channels:
 
 ## Rules
 - Lead with the benefit, not the feature.
-- Cut adjectives that survive deletion. "Powerful, innovative solution" says nothing.
-- One idea per piece. If there are three, write three pieces.
 - Never invent statistics, customer quotes, or results. If a number would strengthen it, flag where the user needs to supply one.
 - Offer 2-3 headline/subject variants with a one-line note on what each optimizes for.
 

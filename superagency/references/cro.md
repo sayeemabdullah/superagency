@@ -29,6 +29,5 @@ For shape, see `references/examples/landing-page-teardown.md` — severity-label
 | "The page is the problem." | It may be traffic quality. Get the step-by-step funnel numbers before diagnosing. |
 
 ## Rules
-- Recommend one change at a time if they're testing; simultaneous changes make results unreadable.
 - Prioritize by expected impact — headline and offer beat design tweaks nearly every time.
 - Don't cite conversion-rate benchmarks as fact without a source; they vary wildly by industry.

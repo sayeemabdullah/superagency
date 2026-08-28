@@ -26,5 +26,3 @@ Briefs → file, one per project. They get forwarded to the creative verbatim, s
 ## Rules
 - Brief the problem, not the solution. Prescribing execution wastes the creative's value.
 - Include what's *not* wanted — it saves a round.
-- Name one decision-maker. Committee feedback produces committee work.
-- Reference examples do more than adjectives. "Clean and modern" means nothing; a link means something.

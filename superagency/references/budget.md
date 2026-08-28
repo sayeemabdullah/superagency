@@ -52,5 +52,4 @@ channels to make the plan look fundable.
 
 ## Rules
 - Never present a forecast as a commitment. Label assumptions.
-- Account for lag — SEO and content pay back over months; paid pays back immediately. A blended average hides this.
 - Include the cost of production, not just media spend.
