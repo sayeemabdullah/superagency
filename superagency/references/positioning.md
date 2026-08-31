@@ -28,6 +28,8 @@ Position within an existing category by default — buyers arrive with a mental 
 ## Output
 Messaging frameworks and positioning docs → file. Taglines and value-prop rewrites → inline.
 
+For shape, see `references/examples/positioning-framework.md` — every proof point ladders to a pillar, and it lists explicitly what it won't claim.
+
 ## Red flags
 | Thought | Reality |
 |---|---|

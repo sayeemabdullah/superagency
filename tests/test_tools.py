@@ -12,7 +12,7 @@ from contextlib import redirect_stdout
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "superagency", "scripts"))
 
-import ab, adlint, budget, pulse, readability, utm  # noqa: E402
+import ab, adlint, budget, calcheck, pulse, readability, utm  # noqa: E402
 
 
 class TestNormal(unittest.TestCase):
@@ -242,12 +242,50 @@ class TestPulse(unittest.TestCase):
         self.assertEqual([e["from"] for e in entries], ["2026-08-03", "2026-08-10"])
 
 
+class TestCalcheck(unittest.TestCase):
+    HEADER = "| Week | Asset | Dependency |\n|---|---|---|\n"
+
+    def _run(self, body):
+        return calcheck.check(calcheck.parse_table(self.HEADER + body))
+
+    def test_dependency_after_due_is_flagged(self):
+        f = self._run("| -2 | Launch page | -1 |\n")
+        self.assertEqual(len(f), 1)
+        self.assertIn("after", f[0]["problem"])
+
+    def test_dependency_before_due_is_clean(self):
+        self.assertEqual(self._run("| -1 | Launch page | -3 |\n"), [])
+
+    def test_same_offset_is_not_flagged(self):
+        """Week-granularity calendars routinely have two items in the same week."""
+        self.assertEqual(self._run("| -2 | Copy | -2 |\n"), [])
+
+    def test_named_row_dependency_resolves(self):
+        f = self._run("| -3 | Assets | none |\n| -4 | Page | Assets |\n")
+        self.assertEqual(len(f), 1)
+        self.assertIn("Assets", f[0]["problem"])
+
+    def test_iso_dates_compare(self):
+        hdr = "| date | asset | dependency |\n|---|---|---|\n"
+        items = calcheck.parse_table(hdr + "| 2026-01-05 | A | 2026-01-09 |\n")
+        self.assertEqual(len(calcheck.check(items)), 1)
+
+    def test_unresolvable_dependency_is_reported(self):
+        f = self._run("| -2 | Page | Some phantom task |\n")
+        self.assertEqual(len(f), 1)
+        self.assertIn("doesn't resolve", f[0]["problem"])
+
+    def test_missing_date_column_raises(self):
+        with self.assertRaises(ValueError):
+            calcheck.parse_table("| Asset | Dependency |\n|---|---|\n| A | B |\n")
+
+
 class TestCLIsAreWired(unittest.TestCase):
     """Every tool must expose --help without blowing up; a literal % in an
     argparse help string is enough to break it, and did once."""
 
     def test_help_exits_zero(self):
-        for mod in (ab, adlint, budget, pulse, readability, utm):
+        for mod in (ab, adlint, budget, calcheck, pulse, readability, utm):
             with self.subTest(mod=mod.__name__):
                 with self.assertRaises(SystemExit) as cm:
                     with redirect_stdout(io.StringIO()):

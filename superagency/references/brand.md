@@ -54,7 +54,7 @@ below.
 | "The banned-word scan came back clean, so the copy passes." | The scan only matches listed words. Tone, unsubstantiated claims, and off-message framing still need the read below. |
 
 ## Persisting the profile
-This file resets to a blank template whenever the skill is re-uploaded. After writing a profile or changing one, print the complete file contents and tell the user to paste them into their local `references/brand.md` and repackage. Say this every time you write — it is not obvious, and losing the profile is silent.
+This file resets to a blank template whenever the skill is re-uploaded — edits made here live only in the current conversation. After writing or changing a profile, print the complete file contents as **one fenced code block** and tell the user: *save this block and paste it back at the start of your next session.* No repackaging the skill. Say it every time you write — it is not obvious, and losing the profile is silent.
 
 ## How to build a profile from examples
 Ask for 3-5 pieces they think sound right. Look for: sentence length, formality, use of "we" vs "you," humor, jargon tolerance, how they handle claims. Write the profile from patterns, then confirm with the user before saving.

@@ -51,3 +51,40 @@
 {"prompt": "Should we start our own show?", "expect": "podcast.md"}
 {"prompt": "How did we do this week? Signups 412, demos 22", "expect": "reporting.md"}
 {"prompt": "What's actually moved over the last quarter?", "expect": "reporting.md"}
+{"prompt": "Should we add a cheaper tier?", "expect": "pricing.md"}
+{"prompt": "We keep losing deals on price \u2014 what do we do?", "expect": "pricing.md"}
+{"prompt": "Write a one-pager the sales team can leave behind", "expect": "sales-enablement.md"}
+{"prompt": "Reps need an objection-handling doc for security reviews", "expect": "sales-enablement.md"}
+{"prompt": "Define our MQL criteria with sales", "expect": "marketing-ops.md"}
+{"prompt": "How should leads route to reps by territory?", "expect": "marketing-ops.md"}
+{"prompt": "Write a tweet about our new integration", "expect": "content.md"}
+{"prompt": "What should we actually post about on LinkedIn each week?", "expect": "social.md"}
+{"prompt": "Our pricing page gets traffic but nobody signs up", "expect": "cro.md"}
+{"prompt": "Our pricing page doesn't show up on Google", "expect": "seo.md"}
+{"prompt": "Email the customers who cancelled last quarter", "expect": "email-sequences.md"}
+{"prompt": "People cancel around month two \u2014 how do we keep them?", "expect": "lifecycle.md"}
+{"prompt": "Lay out the webinar promo emails and when each one sends", "expect": "events.md"}
+{"prompt": "Set up a 4-email drip for people who downloaded the guide", "expect": "email-sequences.md"}
+{"prompt": "A journalist is writing a negative story about us \u2014 what do we say?", "expect": "crisis.md"}
+{"prompt": "We want coverage for our funding round", "expect": "pr.md"}
+{"prompt": "Turn the launch into a week of coordinated posts and emails", "expect": "campaigns.md"}
+{"prompt": "Write the actual launch-day blog post", "expect": "content.md"}
+{"prompt": "Everything we write sounds generic and interchangeable", "expect": "positioning.md"}
+{"prompt": "Rewrite this paragraph so it's punchier", "expect": "content.md"}
+{"prompt": "Which creators should we work with and how do we reach out?", "expect": "influencer.md"}
+{"prompt": "Set up a revenue-share deal with a complementary tool", "expect": "partnership.md"}
+{"prompt": "Is our checkout flow leaking customers?", "expect": "cro.md"}
+{"prompt": "Where is our paid traffic going, and is it tagged right?", "expect": "analytics.md"}
+{"prompt": "How much do we need to spend to hit 500 demos?", "expect": "budget.md"}
+{"prompt": "Which channels are worth putting money into next quarter?", "expect": "budget.md"}
+{"prompt": "Come up with a title and hook for our next YouTube video", "expect": "video.md"}
+{"prompt": "We want to be on more industry podcasts", "expect": "podcast.md"}
+{"prompt": "Propose a newsletter swap with a partner brand", "expect": "partnership.md"}
+{"prompt": "Our activation rate is 12% \u2014 how do we raise it?", "expect": "lifecycle.md"}
+{"prompt": "What does 'activation' even mean for a product like ours?", "expect": "lifecycle.md"}
+{"prompt": "Give me subject line options for the launch email", "expect": "content.md"}
+{"prompt": "Design the branching logic for our onboarding emails", "expect": "email-sequences.md"}
+{"prompt": "Write the messaging framework the whole team works from", "expect": "positioning.md"}
+{"prompt": "Are these two headlines statistically different at 3,000 views each?", "expect": "testing.md"}
+{"prompt": "Our booth didn't generate pipeline last year \u2014 fix the plan", "expect": "events.md"}
+{"prompt": "The community has gone quiet \u2014 what rituals bring it back?", "expect": "community.md"}

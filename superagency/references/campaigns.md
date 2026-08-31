@@ -26,6 +26,18 @@ Add a phased structure: pre-launch (tease, waitlist), launch day (announcement a
 ## Ask before planning
 Timeline, budget, and whether there's a hard date. These three change the plan more than anything else.
 
+## Tools
+The dependency-after-due-date failure is mechanical to catch. Run the calendar
+table through the checker before handing it over.
+
+```bash
+python3 scripts/calcheck.py calendar.md
+```
+
+It resolves each `dependency` cell — an ISO date, a week offset like `-3`, or
+another row's asset name — and flags any item whose dependency lands after its
+own due date, plus dependencies that don't resolve to anything.
+
 ## Red flags
 | Thought | Reality |
 |---|---|
