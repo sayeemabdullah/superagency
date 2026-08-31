@@ -22,6 +22,8 @@ Covers: ideal customer profile, buyer personas, jobs-to-be-done.
 ## Output
 Persona and ICP docs → file, one page per persona, labeled evidence-based or hypothesis at the top. Quick "who is this for" checks → inline.
 
+For shape, see `references/examples/buyer-persona.md` — labelled a hypothesis, one page, and it ends with what would validate or break it.
+
 ## Red flags
 | Thought | Reality |
 |---|---|

@@ -1,6 +1,6 @@
 # Superagency
 
-A Claude Skill that acts as a full marketing team — 25 workflows covering content, campaigns, SEO, paid ads, email, conversion, PR, competitive research, lifecycle, analytics, and more.
+A Claude Skill that acts as a full marketing team — 28 workflows covering content, campaigns, SEO, paid ads, email, conversion, PR, competitive research, lifecycle, analytics, pricing, sales enablement, marketing ops, and more.
 
 Ask Claude a marketing question in plain language and it routes to the right workflow automatically. No prompt engineering, no re-explaining your context every time.
 
@@ -37,6 +37,9 @@ Ask Claude a marketing question in plain language and it routes to the right wor
 | `podcast` | Podcasts | Guest pitching, show format and cadence, show notes, repurposing | *"Pitch me as a guest on marketing ops podcasts"* |
 | `pulse` | Weekly report | Wins, misses, anomalies, one recommended action | *"How did we do this week? [paste metrics]"* |
 | `trend` | Trend summary | Month/quarter rollup from your saved pulse history | *"What's actually moved over the last quarter?"* |
+| `pricing` | Pricing & packaging | Tier design, price changes, discounting, objection diagnosis | *"Should we add a cheaper tier?"* |
+| `sales` | Sales enablement | One-pagers, objection docs, demo scripts, pitch decks | *"Write a one-pager the sales team can leave behind"* |
+| `ops` | Marketing ops | Lead lifecycle, routing, MQL/SQL definitions, data hygiene | *"Define our MQL criteria with sales"* |
 
 ### How to invoke it
 
@@ -126,13 +129,13 @@ Either way it's already built. Nothing to package, nothing to run — CI rebuilt
 
 Deleting is safe: the skill folder is stateless instruction. Nothing is stored server-side that a re-upload won't restore.
 
-### One thing you will lose
+### Keeping your brand profile and pulse history
 
-`references/brand.md` and `references/pulse-log.md` are written to *during conversations*, and those edits live in the chat session — not in the copy you uploaded. Re-uploading resets both to blank templates.
+`references/brand.md` and `references/pulse-log.md` are written to *during conversations*, and those edits live in the chat session — not in the copy you uploaded. Re-uploading, or just starting a new chat, resets both to blank templates.
 
-So before you delete: open the skill in Claude, ask it to print the current contents of both files, and paste them into your local copies. Otherwise you lose your voice profile and your accumulated pulse history.
+The skill handles this: whenever it writes to either file it prints the whole file as one fenced code block and tells you to save it. Keep that block somewhere, and paste it back at the start of your next session — the skill picks up from it. No rebuilding the archive.
 
-The durable fix is to commit your filled-in `brand.md` as a normal PR. CI rebuilds the archive around it, and every build from then on carries your profile — no manual step to remember.
+The durable fix, if you'd rather bake the profile in, is to commit your filled-in `brand.md` as a normal PR. CI rebuilds the archive around it, and every build from then on carries your profile — no paste step to remember.
 
 ### In Claude Code
 
@@ -176,7 +179,7 @@ For weekly reporting, the `pulse` workflow appends each week's summary to `refer
 
 ```
 superagency/
-├── SKILL.md              # ~70-line router: frontmatter, routing table, standing rules
+├── SKILL.md              # ~125-line router: frontmatter, routing table, standing rules
 └── references/
     ├── content.md
     ├── campaigns.md
@@ -187,7 +190,7 @@ superagency/
 
 It also ships six Python tools it actually runs, so the numbers aren't guessed.
 
-Skills load in three stages: the `description` is always in context, the SKILL.md body loads when the skill triggers, and reference files load only when needed. Putting all 25 workflows in one file would mean loading ~35,000 characters of mostly-irrelevant instructions on every request.
+Skills load in three stages: the `description` is always in context, the SKILL.md body loads when the skill triggers, and reference files load only when needed. Putting all 28 workflows in one file would mean loading ~40,000 characters of mostly-irrelevant instructions on every request.
 
 So `SKILL.md` is just a routing table. Ask about SEO, it reads `references/seo.md` and nothing else.
 
@@ -233,6 +236,7 @@ Most marketing skills are prose. This one bundles executable tools, because its 
 | `budget.py` | A four-step arithmetic chain | `budget.md` |
 | `readability.py` | "This reads well, I think" | `content.md`, `brand.md` |
 | `pulse.py` | Free-form log entries `trend` can't parse | `reporting.md` |
+| `calcheck.py` | Eyeballing a calendar for late dependencies | `campaigns.md` |
 
 Standard library only — the skill sandbox has no network, so there's nothing to install. A standing rule in `SKILL.md` tells Claude never to estimate what a tool computes, and to show the command it ran.
 
@@ -249,7 +253,7 @@ Claude: [runs ab.py result --a 400 12 --b 400 13]
 
 ### Routing evals
 
-A router skill degrades silently: add an overlapping workflow and requests quietly land in the wrong file. `evals/routing.jsonl` holds 53 prompts with the file each should reach, covering all 25 workflows.
+A router skill degrades silently: add an overlapping workflow and requests quietly land in the wrong file. `evals/routing.jsonl` holds 90 prompts with the file each should reach, covering all 28 workflows — including deliberately oblique and boundary-case phrasings for the pairs that get confused.
 
 ```bash
 export ANTHROPIC_API_KEY=sk-...

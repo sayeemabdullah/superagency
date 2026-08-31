@@ -207,6 +207,7 @@ def main():
             "compete": "competitive",
             "pulse": "performance reporting",
             "trend": "performance reporting",
+            "ops": "marketing operations",
         }
         if desc:
             low = desc.lower()
