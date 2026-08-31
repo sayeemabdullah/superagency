@@ -161,17 +161,67 @@ There's no version string inside the skill itself, so Claude can't tell you whic
 
 ---
 
-## First run
+## Getting started, step by step
 
-The first time you ask for anything customer-facing, the skill will ask three quick questions:
+The whole path, from a fresh install to a working weekly rhythm.
+
+### 1. Install and open a new chat
+
+Follow [Install](#install) above — enable code execution, upload `superagency.skill`, toggle it on. Skills load at the **start** of a conversation, so open a fresh chat before testing.
+
+### 2. Just ask — no command needed
+
+Type a marketing task in plain language:
+
+> Write a LinkedIn post announcing our new pricing tier.
+
+The skill reads its router, picks one workflow (`content`, here), loads only that file, and answers. You never choose the workflow yourself: *"someone's complaining about us on Twitter"* lands on `crisis`, *"how do we stop churn"* on `lifecycle`, *"should we add a cheaper tier"* on `pricing`.
+
+If it routes wrong, put the keyword in front to override the guess — `sequence — win-back flow for churned accounts`. The full list is in [What it does](#what-it-does).
+
+### 3. Set your brand voice once
+
+The first time you ask for anything customer-facing, the skill asks three questions:
 
 - Who's the audience?
 - Two or three adjectives for how the brand should sound
 - Anything to avoid — banned words, competitor names, compliance lines
 
-It saves your answers to `references/brand.md` and uses them from then on. You only do this once.
+Answer them and it writes a profile into `brand.md`. Every draft after that is checked against it, and the `voice` keyword runs a dedicated *"does this sound like us?"* review with line-by-line fixes.
 
-For weekly reporting, the `pulse` workflow appends each week's summary to `references/pulse-log.md`, so after a month or so `trend` can tell you what's actually moving rather than just what happened last week.
+**Then save the profile.** The skill prints the whole of `brand.md` as one fenced code block — copy that block into a note somewhere. Step 6 explains why.
+
+### 4. Produce a real deliverable
+
+Ask for something with substance:
+
+> Plan a 6-week launch for our API. Budget $15k, hard date April 1.
+
+You get a one-page campaign brief as a file. Where a number would help but you didn't supply one, it flags the gap instead of inventing it; where the plan rests on a claim that needs substantiation or legal sign-off, it says so.
+
+Tools run automatically when the task needs arithmetic — a budget backsolve, a significance test, an ad-copy character check, a calendar-dependency scan — and Claude shows the command it ran rather than eyeballing the answer.
+
+### 5. Run the weekly pulse
+
+Once a week, paste your numbers:
+
+> How did we do this week? Signups 412 (+18%), demos 22 (-9%), trials-to-paid 31%.
+
+You get wins, misses, anomalies, and **one** recommended action, formatted to drop into Slack or email. It also appends the week to `pulse-log.md` and prints the **whole file** back as a block — save that the same way you saved the brand profile. After a few weeks, `trend` reads the accumulated history and tells you what's actually moving, not just what happened last week.
+
+### 6. Restore state at the start of each session
+
+`brand.md` and `pulse-log.md` live only inside the conversation that wrote them. A new chat — or a re-upload — starts from the blank templates.
+
+So when you start a session that needs either one, paste the saved block back in:
+
+> Here's my brand profile: [paste the fenced block]
+
+The skill picks up from it. If you'd rather not do this each time, commit your filled-in `brand.md` as a PR (see [Extending it](#extending-it)) — CI bakes it into every future build and there's nothing to paste.
+
+### 7. Update when a new version ships
+
+Claude.ai has no in-place update: you delete the old skill and upload the new one — full steps in [Updating an installed skill](#updating-an-installed-skill). Your saved blocks from steps 3 and 5 carry your state across the swap.
 
 ---
 
@@ -188,13 +238,22 @@ superagency/
     └── pulse-log.md      # stateful — accumulates weekly metrics
 ```
 
-It also ships six Python tools it actually runs, so the numbers aren't guessed.
+It also ships seven Python tools it actually runs, so the numbers aren't guessed.
 
 Skills load in three stages: the `description` is always in context, the SKILL.md body loads when the skill triggers, and reference files load only when needed. Putting all 28 workflows in one file would mean loading ~40,000 characters of mostly-irrelevant instructions on every request.
 
 So `SKILL.md` is just a routing table. Ask about SEO, it reads `references/seo.md` and nothing else.
 
 Every workflow file follows the same shape: a scope line, the workflow itself, an `Output` section saying what lands inline vs as a file, a `Red flags` table, and a `Rules` section encoding that domain's failure mode — fabricated numbers, unsubstantiated claims, advice that goes stale. Files that commonly work together point at each other with an "Often pairs with" line.
+
+### Where the skill stops
+
+"Marketing" is unbounded, so the scope is drawn on purpose:
+
+- **Advice and drafts, not execution.** It writes the press release, plans the campaign, designs the sequence. It does not run your ad accounts, send from your ESP, administer your CRM, or configure your martech stack.
+- **No production of built or visual assets.** It briefs a designer; it doesn't design. It scripts a video; it doesn't cut one. It specs a landing page; it doesn't build it.
+- **No legal, financial, or accounting judgement.** It flags what needs sign-off and stops there.
+- **28 workflows is a ceiling, not a target.** Anthropic's own guidance favours focused skills, and a tighter router is a more accurate one. A new workflow earns its place only if it doesn't lexically collide with an existing one — `scripts/route_lint.py` measures that on every PR, and `make route` prints the most-similar pairs so you can see a collision coming.
 
 ---
 
@@ -214,13 +273,14 @@ These constraints are deliberate, not oversights:
 
 To add a workflow:
 
-1. Write `references/<name>.md` — scope line, structure or checklist, then a "Red flags" table and a "Rules" section covering that domain's failure mode.
+1. Write `references/<name>.md` — scope line, structure or checklist, an `Output` section, a `Red flags` table (≥2 rows, each a quoted thought), and a `Rules` section covering that domain's failure mode.
 2. Add a row to the routing table in `SKILL.md`.
-3. Add the keyword to the keyword list in `SKILL.md`, and a row to the table in this README.
+3. Add the keyword to the keyword list in `SKILL.md`, and a row to the table in this README — same order in both.
 4. **Add the domain to the `description` field.** This is the step people forget, and skipping it means the workflow never triggers — Claude decides whether to use a skill based only on its description.
-5. Run `make check`, open a PR, then tag a release — see [Updating an installed skill](#updating-an-installed-skill), and note that the old copy must be deleted first.
+5. Add at least one case to `evals/routing.jsonl` — the validator fails without it.
+6. Run `make check && make route && make test`. If `make route` drops sharply, your routing row or `Covers:` line collides with an existing workflow — reword until it doesn't. Then open a PR, and tag a release once merged — see [Updating an installed skill](#updating-an-installed-skill), noting the old copy must be deleted first.
 
-To trim: after a few weeks, delete reference files that never get routed to. Anthropic's own guidance favors focused skills over one that does everything, so treat this many workflows as a ceiling rather than a target — a tighter skill routes more accurately.
+To trim: after a few weeks, delete reference files that never get routed to. Anthropic's own guidance favors focused skills over one that does everything, so treat 28 workflows as a ceiling rather than a target — a tighter skill routes more accurately.
 
 ---
 
@@ -249,18 +309,20 @@ Claude: [runs ab.py result --a 400 12 --b 400 13]
 
 ### Worked examples
 
-`references/examples/` holds four reference-quality outputs — a campaign brief, battlecard, landing page teardown, and weekly pulse — loaded only when that workflow runs. Every number in them is invented and each carries a banner saying so, because the skill's central rule is never to present invented figures as evidence.
+`references/examples/` holds eight reference-quality outputs — a campaign brief, battlecard, landing page teardown, weekly pulse, positioning framework, buyer persona, press release, and email sequence — loaded only when that workflow runs. Every number in them is invented and each carries a banner saying so, because the skill's central rule is never to present invented figures as evidence.
 
-### Routing evals
+### Routing checks
 
 A router skill degrades silently: add an overlapping workflow and requests quietly land in the wrong file. `evals/routing.jsonl` holds 90 prompts with the file each should reach, covering all 28 workflows — including deliberately oblique and boundary-case phrasings for the pairs that get confused.
 
+Two things run against it:
+
 ```bash
-export ANTHROPIC_API_KEY=sk-...
-make eval
+make route     # deterministic, in CI — a lexical proxy for routing accuracy
+make eval      # the real thing: asks a model. needs ANTHROPIC_API_KEY, costs money
 ```
 
-Deliberately not in CI — it costs money and isn't deterministic. Run it after adding a workflow and compare against your last score.
+`route_lint.py` builds a bag-of-words profile per workflow and routes each prompt by term overlap. The absolute score (~71%) doesn't mean much — a lexical router is dumb — but the **delta** does: a new workflow that collides with an existing one drops it, in CI, before the ambiguity ships. It also prints the most-similar workflow profiles directly. `make eval` is the honest measure; it's out of CI because it costs money and isn't deterministic, so run it after adding a workflow and compare against your last score.
 
 ---
 
@@ -287,13 +349,14 @@ Edit `superagency/`, open a PR, and that's the whole job. CI rebuilds the archiv
 ```bash
 make hooks    # once — installs a pre-commit guard against hand-built archives
 make check    # structural validation, same as CI
+make route    # deterministic routing proxy, same as CI
 make test     # unit tests for the bundled tools
 make skill    # rebuild locally to inspect; do not commit the result
 ```
 
 | When | What runs |
 |---|---|
-| Every PR | `validate.yml` — validates, runs the tool tests, rebuilds, and commits the archive to the PR branch if it's stale |
+| Every PR | `validate.yml` — validates structure, runs the routing proxy, runs the tool tests, rebuilds, and commits the archive to the PR branch if it's stale |
 | Push to `main` | Same workflow in verify-only mode; fails if `main`'s archive drifts from source |
 | Push a `v*` tag | `release.yml` — validates, builds, and attaches `superagency.skill` to a GitHub Release |
 
@@ -318,6 +381,8 @@ A consequence worth knowing: if you run `make skill` and your source matches `ma
 Since a rule that stops firing looks identical to one that works, it also requires a `Red flags` table in every workflow file, with at least two rows whose left column is a quoted thought.
 
 It also covers the tooling: every referenced script exists, every shipped script is referenced by something, **every tool's `--help` actually runs** (a stray `%` in an argparse help string is enough to break it, and did), every example carries its illustrative banner, and every routed workflow has an eval case.
+
+Alongside it, `scripts/route_lint.py` runs in CI as a deterministic proxy for routing accuracy — a lexical router over the eval prompts, failed under 60%. It won't catch a subtle wording problem, but it catches a new workflow whose routing row collides with an existing one, which is the failure that otherwise ships silently.
 
 ---
 
@@ -354,12 +419,12 @@ GitHub calls it a pull request; GitLab calls the same thing a merge request. Eit
    git checkout -b add-podcast-workflow
    ```
 
-3. **Make the change.** For a new workflow that's four edits: the new `references/<name>.md`, a routing row in `SKILL.md`, the keyword list, and the `description` field. Add a row to the keyword table in this README too, and at least one case to `evals/routing.jsonl` — the validator fails without it.
+3. **Make the change.** For a new workflow, follow the six steps in [Extending it](#extending-it): the new `references/<name>.md`, a routing row and keyword in `SKILL.md`, the `description` field, a row in this README's keyword table, and a case in `evals/routing.jsonl`.
 
 4. **Validate** — the same checks CI runs:
 
    ```bash
-   make check
+   make check && make route && make test
    ```
 
    **Leave `superagency.skill` alone** — don't build it, don't stage it, don't push it. CI rebuilds it and commits it to your branch for you. Run `make hooks` once and git will stop you staging it by accident.

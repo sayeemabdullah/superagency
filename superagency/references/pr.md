@@ -23,6 +23,8 @@ An opinion piece under an exec's name for a trade publication. Pitch the *argume
 ## Output
 Releases and bylines → file. Pitches → inline (they're emails).
 
+For shape, see `references/examples/press-release.md` — every quote is a labelled draft for a named person, and no time-savings figure is stated as fact.
+
 ## Red flags
 | Thought | Reality |
 |---|---|

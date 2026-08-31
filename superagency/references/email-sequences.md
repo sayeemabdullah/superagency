@@ -36,3 +36,5 @@ Subject line (2-3 variants), preview text, body, one primary CTA. Preview text i
 
 ## Output
 Full sequence → file, with a flow summary at the top showing the branching.
+
+For shape, see `references/examples/email-sequence.md` — flow summary up top, one CTA per email, urgency escalating across the five, and an explicit exit condition.

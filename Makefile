@@ -1,4 +1,4 @@
-.PHONY: check test eval skill hooks clean
+.PHONY: check route test eval skill hooks clean
 
 SKILL := superagency.skill
 
@@ -6,11 +6,15 @@ SKILL := superagency.skill
 check:
 	python3 scripts/validate.py
 
+## route — deterministic offline routing proxy; runs in CI, watch the delta
+route:
+	python3 scripts/route_lint.py --fail-under 0.60
+
 ## test — unit tests for the bundled tools
 test:
 	python3 -m unittest discover -s tests -q
 
-## eval — routing accuracy; needs ANTHROPIC_API_KEY, costs money, not in CI
+## eval — routing accuracy against a real model; needs ANTHROPIC_API_KEY, costs money, not in CI
 eval:
 	python3 scripts/eval_routing.py
 
